@@ -21,7 +21,7 @@ function App() {
             <>
               <Navbar />
               <main>
-                <section className="min-h-screen flex justify-center py-14 bg-system-grey">
+                <section className="min-h-screen w-screen flex justify-center py-14 bg-system-grey">
                   <Routes>
                     <Route exact path="/" element={<Profile />} />
                     <Route path="/piezimes" element={<Notes />} />

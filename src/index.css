@@ -35,4 +35,8 @@
   .profile-list-item {
     @apply rounded-sm px-2 py-1 bg-white;
   }
+
+  .system-input {
+    @apply outline-none p-2 rounded-sm border border-slate-200;
+  }
 }
