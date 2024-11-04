@@ -1,0 +1,38 @@
+@tailwind base;
+
+@layer base {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-system-green {
+    @apply bg-[#52ab98];
+  }
+
+  .bg-system-grey {
+    @apply bg-[#f2f2f2];
+  }
+
+  .bg-system-blue {
+    @apply bg-[#2b6777];
+  }
+
+  .navbar-li {
+    @apply hover:text-[#52ab98] duration-300;
+  }
+
+  .profile-list-item {
+    @apply rounded-sm px-2 py-1 bg-white;
+  }
+}
