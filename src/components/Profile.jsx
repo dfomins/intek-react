@@ -5,7 +5,7 @@ import profilePicture from "../images/profile-picture.jpg";
 function Profile() {
   return (
     <>
-      <div className="flex justify-between max-lg:flex-col lg:min-w-[1000px]">
+      <div className="flex justify-between max-lg:flex-col lg:min-w-[1100px]">
         <div className="w-auto lg:max-w-[400px] h-fit bg-system-green rounded-md lg:me-5 max-lg:mb-10 px-10 py-8 text-center text-white">
           <h2 className="mb-2 text-center text-[25px] font-bold truncate">Daniels Fomins</h2>
           <h3 className="text-center text-[20px] font-medium">Vadītājs</h3>
