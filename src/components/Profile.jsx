@@ -5,7 +5,7 @@ import profilePicture from "../images/profile-picture.jpg";
 function Profile() {
   return (
     <>
-      <div className="flex justify-between max-lg:flex-col lg:min-w-[1100px]">
+      <div className="flex justify-between max-lg:flex-col lg:min-w-[1000px]">
         <div className="w-auto lg:max-w-[400px] h-fit bg-system-green rounded-md lg:me-5 max-lg:mb-10 px-10 py-8 text-center text-white">
           <h2 className="mb-2 text-center text-[25px] font-bold truncate">Daniels Fomins</h2>
           <h3 className="text-center text-[20px] font-medium">Vadītājs</h3>
@@ -40,11 +40,11 @@ function Profile() {
               <h3>Nostrādātās stundas: 8</h3>
             </div>
           </div>
-          <div className="h-fit flex flex-col bg-system-green rounded-md">
+          <div className="flex flex-col bg-system-green rounded-md">
             <div className="py-4 bg-system-blue rounded-t-md text-center font-medium">
               <h3>Paziņojumi</h3>
             </div>
-            <div className="flex justify-center grow py-3 text-black">
+            <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">
                 <ul className="space-y-2">
                   <li>
@@ -65,6 +65,9 @@ function Profile() {
                   </li>
                 </ul>
               </div>
+              <div>
+                <button className="bg-white px-2 py-1 rounded-sm">Izveidot jaunu</button>
+              </div>
             </div>
           </div>
           <div className="flex flex-col bg-system-green rounded-md">
@@ -77,7 +80,7 @@ function Profile() {
                   <li>
                     <a href="#">
                       <div className="profile-list-item">
-                        <p>1. paziņojums</p>
+                        <p>1. piezīme</p>
                         <p>Izveidots: datums</p>
                       </div>
                     </a>
@@ -85,7 +88,7 @@ function Profile() {
                   <li>
                     <a href="#">
                       <div className="profile-list-item">
-                        <p>2. paziņojums</p>
+                        <p>2. piezīme</p>
                         <p>Izveidots: datums</p>
                       </div>
                     </a>
