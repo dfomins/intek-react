@@ -5,8 +5,8 @@ import profilePicture from "../images/profile-picture.jpg";
 function Profile() {
   return (
     <>
-      <div className="flex justify-between max-lg:flex-col lg:min-w-[1000px]">
-        <div className="w-auto lg:max-w-[400px] h-fit bg-system-green rounded-md lg:me-5 max-lg:mb-10 px-10 py-8 text-center text-white">
+      <div className="w-11/12 xl:w-[1200px] lg:w-[950px] flex justify-between max-lg:flex-col">
+        <div className="w-auto h-fit px-10 py-8 lg:me-10 max-lg:mb-10 bg-system-green rounded-md text-center text-white">
           <h2 className="mb-2 text-center text-[25px] font-bold truncate">Daniels Fomins</h2>
           <h3 className="text-center text-[20px] font-medium">Vadītājs</h3>
           <div className="max-w-[400px] mx-auto my-6 w-full rounded-full border border-solid border-gray-400">
@@ -27,7 +27,7 @@ function Profile() {
             </a>
           </div>
         </div>
-        <div className="flex flex-col space-y-8 w-full rounded-md lg:ms-5 text-white">
+        <div className="flex flex-col space-y-8 w-full rounded-md text-white">
           <div className="flex flex-col bg-system-green rounded-md text-center">
             <div className="py-4 bg-system-blue rounded-t-md">
               <p>

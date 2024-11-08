@@ -4,7 +4,7 @@ function Notes() {
   return (
     <div>
       <h1 className="text-center mb-7">Privātās piezīmes</h1>
-      <div className="lg:w-[1000px]">
+      <div className="xl:w-[1200px]">
         <div className="mb-3 flex">
           <input className="mr-2 system-input" placeholder="Meklēt pēc nosaukuma" />
           <select className="w-40 system-input">
