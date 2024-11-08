@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="flex justify-center m-auto xl:w-[1200px] lg:w-[950px] lg:justify-between xl:justify-between items-center h-20 drop-shadow-md overflow-hidden">
+      <nav className="w-11/12 xl:min-w-[1200px] lg:min-w-[950px] flex m-auto justify-between md:justify-center lg:justify-between xl:justify-between items-center h-20 drop-shadow-md">
         <div className="md:hidden lg:block">
           <Link to="/">
             <img className="max-w-16" src={logo} alt="Logo" />
@@ -42,7 +42,7 @@ function Navbar() {
         </div>
         <i class="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}></i>
       </nav>
-      <div className={`absolute right-0 w-48 h-full bg-white ${isMenuOpen ? "block" : "hidden"}`}>
+      <div className={`absolute right-0 w-60 h-full bg-white ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="flex flex-col p-6">
           <ul>
             <li className="tracking-widest navbar-li">
