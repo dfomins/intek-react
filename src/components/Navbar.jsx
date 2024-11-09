@@ -7,6 +7,10 @@ function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  function changeState() {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <>
       <nav className="w-11/12 xl:min-w-[1200px] lg:min-w-[950px] flex m-auto justify-between md:justify-center lg:justify-between xl:justify-between items-center h-20 drop-shadow-md">
@@ -40,27 +44,30 @@ function Navbar() {
             </Link>
           </ul>
         </div>
-        <i className="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}></i>
+        <i className="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={changeState}></i>
       </nav>
-      <div className={`absolute right-0 w-60 h-full bg-white ${isMenuOpen ? "block" : "hidden"}`}>
+      <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
+        <div className="flex justify-end">
+          <i class="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState}/>
+        </div>
         <div className="flex flex-col p-6">
-          <ul>
-            <li className="tracking-widest navbar-li">
+          <ul className="tracking-widest" onClick={changeState}>
+            <li className="mb-2 navbar-li">
               <Link to="/">Profils</Link>
             </li>
-            <li className="navbar-li">
+            <li className="mb-2 navbar-li">
               <Link to="/piezimes">Piezīmes</Link>
             </li>
-            <li className="navbar-li">
+            <li className="mb-2 navbar-li">
               <Link to="/pazinojumi">Paziņojumi</Link>
             </li>
-            <li className="navbar-li">
+            <li className="mb-2 navbar-li">
               <Link to="/darbs">Darbs</Link>
             </li>
-            <li className="navbar-li">
+            <li className="mb-2 navbar-li">
               <Link to="/atskaite">Atskaite</Link>
             </li>
-            <li className="navbar-li">
+            <li className="mb-2 navbar-li">
               <Link to="/darba_objekti">Objekti</Link>
             </li>
             <li className="navbar-li">
