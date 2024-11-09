@@ -40,7 +40,7 @@ function Navbar() {
             </Link>
           </ul>
         </div>
-        <i class="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}></i>
+        <i className="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}></i>
       </nav>
       <div className={`absolute right-0 w-60 h-full bg-white ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="flex flex-col p-6">

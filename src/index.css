@@ -28,6 +28,10 @@
     @apply bg-[#2b6777];
   }
 
+  .bg-system-blue-hovered {
+    @apply bg-[#2b6777ef] duration-300;
+  }
+
   .navbar-li {
     @apply hover:text-[#52ab98] duration-300;
   }
@@ -37,6 +41,10 @@
   }
 
   .system-input {
-    @apply outline-none p-2 rounded-sm border border-slate-200;
+    @apply outline-none p-2 rounded-sm border text-black border-slate-200;
+  }
+
+  .page-title {
+    @apply text-center mb-7 font-medium;
   }
 }

@@ -1,6 +1,7 @@
 // class 'profile-list-item' is defined in the 'index.css' file
 
-import profilePicture from "../images/profile-picture.jpg";
+import { Link } from "react-router-dom";
+import profilePicture from "../images/profile/profile-picture.jpg";
 
 function Profile() {
   return (
@@ -16,9 +17,9 @@ function Profile() {
             <a href="#">
               <p>Mani darba objekti</p>
             </a>
-            <a href="#">
+            <Link to="/profila_iestatijumi">
               <p>Profila iestatījumi</p>
-            </a>
+            </Link>
             <a href="#">
               <p>Izveidot jaunu lietotāju</p>
             </a>
@@ -27,7 +28,7 @@ function Profile() {
             </a>
           </div>
         </div>
-        <div className="flex flex-col space-y-8 w-full rounded-md text-white">
+        <div className="flex flex-col gap-12 w-full rounded-md text-white">
           <div className="flex flex-col bg-system-green rounded-md text-center">
             <div className="py-4 bg-system-blue rounded-t-md">
               <p>

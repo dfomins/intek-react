@@ -9,7 +9,7 @@ function Footer() {
           <p>Intek - moderns portāls, lai jūs varētu veidot darba atskaites savā uzņēmumā. Viegla atskaišu sistēma ļaus atzīmēt stundu skaitu katram darbiniekam pāris minūšu garumā.</p>
         </div>
         <div className="max-md:w-6/12 mb-3">
-          <h3 class="text-[20px] font-semibold">Saites</h3>
+          <h3 className="text-[20px] font-semibold">Saites</h3>
           <ul>
             <li>
               <Link to="/">Profils</Link>
@@ -34,15 +34,15 @@ function Footer() {
         <div className="mb-3">
           <h3 className="mb-3 font-semibold">Kontakti</h3>
           <div className="flex gap-2 items-center">
-            <i class="fa-solid fa-phone" />
+            <i className="fa-solid fa-phone" />
             <p>+371 12345678</p>
           </div>
           <div className="flex gap-2 items-center">
-            <i class="fa-solid fa-envelope" />
+            <i className="fa-solid fa-envelope" />
             <p>info@intek.lv</p>
           </div>
           <div className="flex gap-2 items-center">
-            <i class="fa-solid fa-location-dot" />
+            <i className="fa-solid fa-location-dot" />
             <p>Jelgava, Lielā iela 2</p>
           </div>
         </div>
