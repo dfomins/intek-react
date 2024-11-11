@@ -3,7 +3,8 @@ import Login from "./components/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Profile from "./components/Profile.jsx";
 import Settings from "./components/Settings.jsx";
-import Notes from "./components/Notes.jsx";
+import Notes from "./components/Notes/Notes.jsx";
+import Note from "./components/Notes/NoteDetail.jsx";
 import Notifications from "./components/Notifications.jsx";
 import Work from "./components/Work.jsx";
 import Report from "./components/Report.jsx";
@@ -23,11 +24,12 @@ function App() {
             <>
               <Navbar />
               <main>
-                <section className="min-h-screen w-screen flex justify-center py-14 bg-system-grey">
+                <section className="min-h-screen w-screen flex justify-center bg-system-grey">
                   <Routes>
                     <Route exact path="/" element={<Profile />} />
                     <Route exact path="/profila_iestatijumi" element={<Settings />} />
                     <Route path="/piezimes" element={<Notes />} />
+                    <Route path="/piezimes/:id" element={<Note />} />
                     <Route path="/pazinojumi" element={<Notifications />} />
                     <Route path="/darbs" element={<Work />} />
                     <Route path="/atskaite" element={<Report />} />

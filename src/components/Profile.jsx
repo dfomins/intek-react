@@ -8,7 +8,7 @@ import { notifications } from "./Data";
 function Profile() {
   return (
     <>
-      <div className="w-11/12 xl:w-[1200px] lg:w-[950px] flex justify-between max-lg:flex-col">
+      <div className="panel-width my-14 flex justify-between max-lg:flex-col">
         <div className="w-auto h-fit px-10 py-8 lg:me-10 max-lg:mb-10 bg-system-green rounded-md text-center text-white">
           <h2 className="mb-2 text-center text-[25px] font-bold truncate">Daniels Fomins</h2>
           <h3 className="text-center text-[20px] font-medium">Vadītājs</h3>
@@ -63,7 +63,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button">Izveidot jaunu</button>
+                <button className="system-button hover:bg-system-grey">Izveidot jaunu</button>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button">Izveidot jaunu</button>
+                <button className="system-button hover:bg-system-grey">Izveidot jaunu</button>
               </div>
             </div>
           </div>

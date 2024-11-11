@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 function Footer() {
   return (
-    <footer className="flex justify-center py-10 bg-system-green text-white">
+    <footer className="flex justify-center py-10 bg-system-green text-white drop-shadow-md">
       <div className="w-11/12 xl:w-[1200px] lg:w-[950px] flex justify-between flex-wrap">
         <div className="w-full md:w-6/12 mb-3">
           <h3 className="mb-3 font-semibold">Par mums</h3>
@@ -33,16 +37,16 @@ function Footer() {
         </div>
         <div className="mb-3">
           <h3 className="mb-3 font-semibold">Kontakti</h3>
-          <div className="flex gap-2 items-center">
-            <i className="fa-solid fa-phone" />
+          <div className="flex gap-2 items-center mb-2">
+            <FontAwesomeIcon icon={faPhone} className="text-xl" />
             <p>+371 12345678</p>
           </div>
-          <div className="flex gap-2 items-center">
-            <i className="fa-solid fa-envelope" />
+          <div className="flex gap-2 items-center mb-2">
+            <FontAwesomeIcon icon={faEnvelope} className="text-xl" />
             <p>info@intek.lv</p>
           </div>
           <div className="flex gap-2 items-center">
-            <i className="fa-solid fa-location-dot" />
+            <FontAwesomeIcon icon={faLocationDot} className="text-xl" />
             <p>Jelgava, Lielā iela 2</p>
           </div>
         </div>

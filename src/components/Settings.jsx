@@ -1,19 +1,20 @@
 // class 'profile-settings-panel' is defined in the 'index.css' file
+import { users } from "./Data";
 
 function Settings() {
     return (
-        <div className="w-11/12 xl:w-[1200px] lg:w-[950px]">
+        <div className="panel-width my-14">
             <h1 className="page-title">Profila iestatījumi</h1>
             <div className="grid md:grid-cols-2 gap-7 text-white">
                 <div className="profile-settings-panel">
                     <h2 className="mb-3 font-medium">Pamata informācija</h2>
                     <form>
                         <label>Vārds</label>
-                        <input className="w-full system-input mb-3" type="text" />
+                        <input className="w-full system-input mb-3" type="text" value={users[0].name}/>
                         <label>Uzvārds</label>
-                        <input className="w-full system-input mb-3" type="text" />
+                        <input className="w-full system-input mb-3" type="text" value={users[0].surname}/>
                         <label>E-pasts</label>
-                        <input className="w-full system-input mb-5" type="text" />
+                        <input className="w-full system-input mb-5" type="text" value={users[0].email}/>
                         <button type="submit" className="p-2 bg-white hover:bg-[#c8d8e4] duration-300 rounded-sm text-black">Apstiprināt</button>
                     </form>
                 </div>
@@ -35,7 +36,7 @@ function Settings() {
                         <label>Personas kods</label>
                         <input className="w-full system-input mb-3" type="text" />
                         <label>Dzimšanas datums</label>
-                        <input className="w-full system-input mb-3" type="date" />
+                        <input className="w-full system-input mb-3" type="date" value={users[0].birthDate} />
                         <label>Pilsēta</label>
                         <input className="w-full system-input mb-3" type="text" />
                         <label>Iela</label>

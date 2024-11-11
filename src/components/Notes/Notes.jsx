@@ -1,11 +1,11 @@
 // class 'page-title', 'bg-system-blue-hovered' is defined in the 'index.css' file
 
 import { Link } from "react-router-dom";
-import { notes } from "./Data";
+import { notes } from "../Data";
 
 function Notes() {
   return (
-    <div className="w-11/12 xl:w-[1200px] lg:w-[950px]">
+    <div className="panel-width my-14">
       <h1 className="page-title">Privātās piezīmes</h1>
       <div>
         <div className="mb-3 flex max-sm:flex-col">
@@ -15,7 +15,7 @@ function Notes() {
             <option value="asc">Vecākās</option>
           </select>
         </div>
-        <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
+        <ul className="h-[600px] mb-5 overflow-y-scroll text-white">
         {notes.map((note, index) => (
           <li key={note.id} className={`${index == notes.length - 1 ? "" : "mb-2"}`}>
             <Link to={`${note.id}`}>
@@ -28,7 +28,7 @@ function Notes() {
         ))}
         </ul>
         <div className="flex justify-center">
-          <button className="h-12 px-3 bg-system-blue hover:bg-system-green duration-100 rounded-sm text-white">
+          <button className="h-12 px-3 system-button hover:bg-system-green hover:text-white shadow-sm">
             Pievienot jaunu
           </button>
         </div>

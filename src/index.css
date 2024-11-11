@@ -16,6 +16,10 @@
 @tailwind utilities;
 
 @layer components {
+  .panel-width {
+    @apply w-11/12 xl:w-[1200px] lg:w-[950px];
+  }
+
   .bg-system-green {
     @apply bg-[#52ab98];
   }
@@ -49,7 +53,7 @@
   }
 
   .system-button {
-    @apply bg-white px-2 py-1 rounded-sm hover:bg-system-grey duration-300
+    @apply bg-white px-2 py-1 rounded-sm duration-100
   }
 
   .profile-settings-panel {
