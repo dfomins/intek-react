@@ -18,10 +18,10 @@ function Notes() {
         <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
         {notes.map((note, index) => (
           <li key={note.id} className={`${index == notes.length - 1 ? "" : "mb-2"}`}>
-            <Link to={note.id}>
+            <Link to={`${note.id}`}>
               <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
                 <p className="text-lg font-medium truncate">{note.title}</p>
-                <p>{note.createdAt}</p>
+                <p>{note.createdAt.toLocaleDateString()}</p>
               </div>
             </Link>
           </li>

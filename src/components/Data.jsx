@@ -25,24 +25,24 @@ export const notes = [{
     id: 1,
     title: 'Pirmā piezīme',
     content: 'asdasdasd',
-    createdAt: '11-11-2023'
+    createdAt: new Date("2023-11-11")
 }, {
     id: 2,
     title: 'Otrā piezīme',
     content: 'asdasdasd',
-    createdAt: '10-11-2023'
+    createdAt: new Date("2023-11-05")
 }];
 
 export const notifications = [{
     id: 1,
     title: 'Pirmais paziņojums',
     content: 'asdasdasd',
-    createdAt: '05-11-2023',
+    createdAt: new Date("2023-11-05"),
     createdBy: users[0].name + " " + users[0].surname
 }, {
     id: 2,
     title: 'Otrais paziņojums',
     content: 'asdasdasd',
-    createdAt: '02-11-2023',
+    createdAt: new Date("2023-11-02"),
     createdBy: users[0].name + " " + users[0].surname
 }];

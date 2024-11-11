@@ -18,10 +18,10 @@ function Notifications() {
         <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
           {notifications.map((notification, index) => (
             <li key={notification.id} className={`${index == notifications.length - 1 ? "" : "mb-2"}`}>
-              <Link to={notification.id}>
+              <Link to={`${notification.id}`}>
                 <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
                   <p className="text-lg font-medium truncate">{notification.title}</p>
-                  <p>{notification.createdAt}</p>
+                  <p>{notification.createdAt.toLocaleDateString()}</p>
                   <p>Izveidoja: {notification.createdBy}</p>
                 </div>
               </Link>
