@@ -16,10 +16,10 @@ function Notes() {
           </select>
         </div>
         <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
-        {notes.map(note => (
-          <li key={note.id}>
+        {notes.map((note, index) => (
+          <li key={note.id} className={`${index == notes.length - 1 ? "" : "mb-2"}`}>
             <Link to={note.id}>
-              <div className={`p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm ${note.id == notes.length ? "" : "mb-2"}`}>
+              <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
                 <p className="text-lg font-medium truncate">{note.title}</p>
                 <p>{note.createdAt}</p>
               </div>

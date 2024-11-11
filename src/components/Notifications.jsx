@@ -16,8 +16,8 @@ function Notifications() {
           </select>
         </div>
         <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
-          {notifications.map(notification => (
-            <li key={notification.id}>
+          {notifications.map((notification, index) => (
+            <li key={notification.id} className={`${index == notifications.length - 1 ? "" : "mb-2"}`}>
               <Link to={notification.id}>
                 <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
                   <p className="text-lg font-medium truncate">{notification.title}</p>
@@ -27,22 +27,6 @@ function Notifications() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link to="1">
-              <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
-                <p className="text-lg font-medium truncate">Paziņojums 1</p>
-                <p>04/11/2024 11:53</p>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="2">
-              <div className="mt-3 p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
-                <p className="text-lg font-medium truncate">Paziņojums 2</p>
-                <p>05/12/2024 12:03</p>
-              </div>
-            </Link>
-          </li>
         </ul>
         <div className="flex justify-center">
           <button className="h-12 px-3 bg-system-blue hover:bg-system-green duration-100 rounded-sm text-white">

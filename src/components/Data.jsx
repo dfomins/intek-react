@@ -39,4 +39,10 @@ export const notifications = [{
     content: 'asdasdasd',
     createdAt: '05-11-2023',
     createdBy: users[0].name + " " + users[0].surname
+}, {
+    id: 2,
+    title: 'Otrais paziņojums',
+    content: 'asdasdasd',
+    createdAt: '02-11-2023',
+    createdBy: users[0].name + " " + users[0].surname
 }];
