@@ -3,6 +3,7 @@ export const users = [{
     name: 'Daniels',
     surname:'Fomins',
     email: 'danielsfomins92@gmail.com',
+    birthDate: new Date("2002-11-29"),
     objects: '1, 3, 5',
     role: 'Vadītājs'
 }, {
@@ -10,6 +11,7 @@ export const users = [{
     name: 'Pēteris',
     surname: 'Asd',
     email: 'peterisasd@gmail.com',
+    birthDate: new Date("2002-12-01"),
     objects: 'Nav',
     role: 'Darbinieks'
 }, {
@@ -17,6 +19,7 @@ export const users = [{
     name: 'Daniils',
     surname: 'Sredņakovs',
     email: 'daniils@gmail.com',
+    birthDate: new Date("2001-03-08"),
     objects: '1',
     role: 'Brigadieris'
 }, {
@@ -24,6 +27,7 @@ export const users = [{
     name: 'Berthe',
     surname: 'Hyde-Chambers',
     email: 'bhydechambers2@cdc.gov',
+    birthDate: new Date("1961-07-19"),
     objects: '2',
     role: 'Brigadieris'
 }, {
@@ -31,6 +35,7 @@ export const users = [{
     name: 'Moshe',
     surname: 'Nowill',
     email: 'mnowill3@huffingtonpost.com',
+    birthDate: new Date("1966-05-01"),
     objects: '1',
     role: 'Brigadieris'
 }, {
@@ -38,6 +43,7 @@ export const users = [{
     name: 'Renee',
     surname: 'Isted',
     email: 'risted4@seesaa.net',
+    birthDate: new Date("1950-09-27"),
     objects: '8',
     role: 'Brigadieris'
 }, {
@@ -45,6 +51,7 @@ export const users = [{
     name: 'Janis',
     surname: 'Isaacs',
     email: 'jisaacs5@tmall.com',
+    birthDate: new Date("1988-12-28"),
     objects: '2',
     role: 'Brigadieris'
 }, {
@@ -52,6 +59,7 @@ export const users = [{
     name: 'Eadie',
     surname: 'MacAndrew',
     email: 'emacandrew6@creativecommons.org',
+    birthDate: new Date("1951-10-10"),
     objects: '2',
     role: 'Brigadieris'
 }, {
@@ -59,6 +67,7 @@ export const users = [{
     name: 'Dominica',
     surname: 'Loughnan',
     email: 'doloughnan7@blogs.com',
+    birthDate: new Date("1961-03-30"),
     objects: '8',
     role: 'Darbinieks'
 }, {
@@ -66,6 +75,7 @@ export const users = [{
     name: 'Eal',
     surname: 'Roggero',
     email: 'eroggero8@baidu.com',
+    birthDate: new Date("1976-04-24"),
     objects: '2',
     role: 'Darbinieks'
 }, {
@@ -73,6 +83,7 @@ export const users = [{
     name: 'Jeniffer',
     surname: 'Doog',
     email: 'jdoog9@hexun.com',
+    birthDate: new Date("1956-08-27"),
     objects: '8',
     role: 'Darbinieks'
 }]

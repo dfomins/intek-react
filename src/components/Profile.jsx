@@ -52,7 +52,7 @@ function Profile() {
                 <ul className="space-y-2">
                   {notes.map(note => (
                     <li key={note.id}>
-                      <Link to="piezimes/{note.id}">
+                      <Link to={`piezimes/${note.id}`}>
                         <div className="profile-list-item">
                           <p>{note.title}</p>
                           <p>Izveidota: {note.createdAt.toLocaleDateString()}</p>

@@ -1,6 +1,14 @@
 import { users } from "./Data";
 
 function AllUsers() {
+    function setBackground(index) {
+        if(index % 2 == 0) {
+            return "bg-[#F3F3F3]";
+        } else {
+            return "bg-white";
+        }
+    }
+
     return (
         <div className="w-11/12 xl:w-[1200px] l:w-[950px]">
             <h1 className="page-title">Visi lietotāji</h1>
@@ -9,7 +17,7 @@ function AllUsers() {
                     <button className="px-2 bg-system-blue hover:bg-system-green duration-100 rounded-sm text-white">Izveidot jaunu lietotāju</button>
                     <input type="text"  className="system-input" placeholder="Meklēt..."/>
                 </div>
-                <div className="h-[500px] overflow-auto">
+                <div className="h-[600px] overflow-auto">
                     <table className="table-auto w-full shadow-sm">
                         <thead className="text-white">
                             <tr>
@@ -23,28 +31,25 @@ function AllUsers() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map(user => (
-                                <tr key={user.id} className={`${user.id % 2 == 0 ? "bg-[#F3F3F3]" : "bg-white"}`}>
-                                    <td className={`p-3 text-start sticky left-0 ${user.id % 2 == 0 ? "bg-[#F3F3F3]" : "bg-white"}`}>{user.id}</td>
+                            {users.map((user, index) => (
+                                <tr key={user.id} className={`${setBackground(index)}`}>
+                                    <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
                                     <td className="p-3 text-start">{user.name}</td>
                                     <td className="p-3 text-start">{user.surname}</td>
                                     <td className="p-3 text-start">{user.email}</td>
                                     <td className="p-3 text-start">{user.objects}</td>
                                     <td className="p-3 text-start">{user.role}</td>
-                                    <td className={`p-3 text-center sticky right-0 ${user.id % 2 == 0 ? "bg-[#F3F3F3]" : "bg-white"}`}>
+                                    <td className={`p-3 text-center sticky right-0 ${setBackground(index)}`}>
                                         <i className="fa-solid fa-pen-to-square mr-3 cursor-pointer" />
                                         <i className="fa-solid fa-trash cursor-pointer"></i>
                                     </td>
                                 </tr>
                             ))}
-                            {/* <tr className="bg-white border-t-2 border-[#2b6777]">
-                                <td className="p-2 text-start" colSpan={7}>Kopā: {users.length}</td>
-                            </tr> */}
                         </tbody>
-                    </table>  
-                </div>
-                <div className="p-3 bg-white border-t-2 border-[#2b6777]">
-                    Kopā: {users.length}
+                    </table>
+                    <div className="p-3 sticky bottom-0 border-t-2 border-[#2b6777] bg-white">
+                        Kopā: {users.length}
+                    </div>
                 </div>
             </div>
         </div>
