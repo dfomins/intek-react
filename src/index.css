@@ -47,4 +47,8 @@
   .page-title {
     @apply text-center mb-7 font-medium;
   }
+
+  .profile-settings-panel {
+    @apply p-8 flex flex-col items-start rounded-sm bg-system-green;
+  }
 }
