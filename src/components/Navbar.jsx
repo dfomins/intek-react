@@ -48,7 +48,7 @@ function Navbar() {
       </nav>
       <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
         <div className="flex justify-end">
-          <i class="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState}/>
+          <i className="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState}/>
         </div>
         <div className="flex flex-col p-6">
           <ul className="tracking-widest" onClick={changeState}>

@@ -48,6 +48,10 @@
     @apply text-center mb-7 font-medium;
   }
 
+  .system-button {
+    @apply bg-white px-2 py-1 rounded-sm hover:bg-system-grey duration-300
+  }
+
   .profile-settings-panel {
     @apply p-8 flex flex-col items-start rounded-sm bg-system-green;
   }

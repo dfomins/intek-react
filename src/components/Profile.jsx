@@ -2,6 +2,8 @@
 
 import { Link } from "react-router-dom";
 import profilePicture from "../images/profile/profile-picture.jpg";
+import { notes } from "./Data";
+import { notifications } from "./Data";
 
 function Profile() {
   return (
@@ -23,9 +25,9 @@ function Profile() {
             <a href="#">
               <p>Izveidot jaunu lietotāju</p>
             </a>
-            <a href="#">
+            <Link to="/visi_lietotaji">
               <p>Visi lietotāji</p>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-12 w-full rounded-md text-white">
@@ -48,26 +50,20 @@ function Profile() {
             <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">
                 <ul className="space-y-2">
-                  <li>
-                    <a href="#">
-                      <div className="profile-list-item">
-                        <p>1. paziņojums</p>
-                        <p>Izveidots: datums</p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div className="profile-list-item">
-                        <p>2. paziņojums</p>
-                        <p>Izveidots: datums</p>
-                      </div>
-                    </a>
-                  </li>
+                  {notes.map(note => (
+                    <li key={note.id}>
+                      <Link to="piezimes/{note.id}">
+                        <div className="profile-list-item">
+                          <p>{note.title}</p>
+                          <p>Izveidota: {note.createdAt.toLocaleDateString()}</p>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div>
-                <button className="bg-white px-2 py-1 rounded-sm">Izveidot jaunu</button>
+                <button className="system-button">Izveidot jaunu</button>
               </div>
             </div>
           </div>
@@ -78,26 +74,20 @@ function Profile() {
             <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">
                 <ul className="space-y-2">
-                  <li>
-                    <a href="#">
+                  {notifications.map(notification => (
+                    <li key={notification.id}>
+                    <Link to={`pazinojumi/${notification.id}`}>
                       <div className="profile-list-item">
-                        <p>1. piezīme</p>
-                        <p>Izveidots: datums</p>
+                        <p>{notification.title}</p>
+                        <p>Izveidots: {notification.createdAt.toLocaleDateString()}</p>
                       </div>
-                    </a>
+                    </Link>
                   </li>
-                  <li>
-                    <a href="#">
-                      <div className="profile-list-item">
-                        <p>2. piezīme</p>
-                        <p>Izveidots: datums</p>
-                      </div>
-                    </a>
-                  </li>
+                  ))}
                 </ul>
               </div>
               <div>
-                <button className="bg-white px-2 py-1 rounded-sm">Izveidot jaunu</button>
+                <button className="system-button">Izveidot jaunu</button>
               </div>
             </div>
           </div>
