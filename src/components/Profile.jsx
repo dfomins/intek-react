@@ -63,7 +63,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="bg-white px-2 py-1 rounded-sm">Izveidot jaunu</button>
+                <button className="system-button">Izveidot jaunu</button>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="bg-white px-2 py-1 rounded-sm">Izveidot jaunu</button>
+                <button className="system-button">Izveidot jaunu</button>
               </div>
             </div>
           </div>
