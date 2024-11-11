@@ -10,6 +10,7 @@ import Report from "./components/Report.jsx";
 import Buildings from "./components/Buildings.jsx";
 import Footer from "./components/Footer.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AllUsers from "./components/AllUsers.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/darbs" element={<Work />} />
                     <Route path="/atskaite" element={<Report />} />
                     <Route path="/darba_objekti" element={<Buildings />} />
+                    <Route path="/visi_lietotaji" element={<AllUsers />} />
                   </Routes>
                 </section>
               </main>

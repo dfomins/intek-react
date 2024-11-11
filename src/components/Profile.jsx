@@ -23,9 +23,9 @@ function Profile() {
             <a href="#">
               <p>Izveidot jaunu lietotāju</p>
             </a>
-            <a href="#">
+            <Link to="/visi_lietotaji">
               <p>Visi lietotāji</p>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-12 w-full rounded-md text-white">

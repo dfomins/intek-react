@@ -1,6 +1,7 @@
 // class 'page-title' is defined in the 'index.css' file
 
 import { Link } from "react-router-dom";
+import { notifications } from "./Data";
 
 function Notifications() {
   return (
@@ -15,6 +16,17 @@ function Notifications() {
           </select>
         </div>
         <ul className="h-[500px] mb-5 overflow-y-scroll text-white">
+          {notifications.map(notification => (
+            <li key={notification.id}>
+              <Link to={notification.id}>
+                <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
+                  <p className="text-lg font-medium truncate">{notification.title}</p>
+                  <p>{notification.createdAt}</p>
+                  <p>Izveidoja: {notification.createdBy}</p>
+                </div>
+              </Link>
+            </li>
+          ))}
           <li>
             <Link to="1">
               <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
