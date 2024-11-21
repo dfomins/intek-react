@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function Note() {
+function NoteDetail() {
     const params = useParams()
     const note = notes[params.id - 1];
 
@@ -37,4 +37,4 @@ function Note() {
     }
 }
 
-export default Note;
+export default NoteDetail;
