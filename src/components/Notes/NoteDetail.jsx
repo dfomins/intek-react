@@ -15,7 +15,7 @@ function NoteDetail() {
     if (note != null) {
         return (
             <div className="w-full flex flex-col items-center">
-                <div className="w-full h-[100px] flex justify-center bg-system-green text-white">
+                <div className="w-full h-[100px] flex justify-center bg-system-blue text-white">
                     <div className="panel-width flex justify-between">
                         <div className="flex items-center">
                             <span className="mr-6 text-2xl"><i className="fa-solid fa-circle-left cursor-pointer" onClick={() => navigate(-1)} /></span>

@@ -90,19 +90,19 @@ export const users = [{
 
 export const notes = [{
     id: 1,
-    title: 'Pirmā piezīme',
-    content: 'asdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaaaaasdasdasdsaaaaaaaaaaaaaa',
+    title: 'Paraugs',
+    content: 'Paraugs',
     createdAt: new Date('2023-11-11')
 }, {
     id: 2,
-    title: 'Otrā piezīme',
-    content: 'asdasdasd',
+    title: 'Izlietotie stikla vates ruļļi',
+    content: '54 - 5. gab. 36 - 3. gab. 105 - 10. gab.',
     createdAt: new Date('2023-11-05')
 }];
 
 export const notifications = [{
     id: 1,
-    title: 'Pirmais paziņojums',
+    title: 'Svarīgs paziņojums par ierašanos darbā',
     content: 'asdasdasd',
     createdAt: new Date('2023-11-05'),
     createdBy: users[0].name + ' ' + users[0].surname
@@ -114,22 +114,29 @@ export const notifications = [{
     createdBy: users[0].name + ' ' + users[0].surname
 }];
 
+import aizsilaIelasObjectImage from '../../images/buildings/aizsila_ielas_objekts.jpg';
+import katoluIelasObjectImage from '../../images/buildings/katolu_ielas_objekts.jpg';
+import maskavasIelasObjectImage from '../../images/buildings/maskavas_ielas_objekts.jpg';
+
 export const buildings = [{
     id: 1,
     title: 'Aizsila ielas objekts',
     street: 'Aizsila iela 4',
     city: 'Rīga',
-    description: 'Daudzdzīvokļu mājas būvniecība'
+    description: 'Daudzdzīvokļu mājas būvniecība',
+    image: aizsilaIelasObjectImage
 }, {
     id: 2,
     title: 'Katoļu ielas objekts',
     street: 'Katoļu iela 31',
     city: 'Rīga',
-    description: null
+    description: null,
+    image: katoluIelasObjectImage
 }, {
     id: 3,
     title: 'Maskavas ielas objekts',
     street: 'Maskavas iela 200',
     city: 'Rīga',
-    description: null
+    description: null,
+    image: maskavasIelasObjectImage
 }];
