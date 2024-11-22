@@ -1,5 +1,5 @@
 // class 'profile-settings-panel' is defined in the 'index.css' file
-import { users } from "./Data";
+import { users } from "./Data/Data";
 
 function Settings() {
     return (

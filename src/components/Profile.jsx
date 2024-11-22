@@ -2,8 +2,8 @@
 
 import { Link } from "react-router-dom";
 import profilePicture from "../images/profile/profile-picture.jpg";
-import { notes } from "./Data";
-import { notifications } from "./Data";
+import { notes } from "./Data/Data";
+import { notifications } from "./Data/Data";
 
 let dayDefault = [
   "Svētdiena",
@@ -78,7 +78,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button bg-white hover:bg-system-grey">Izveidot jaunu</button>
+                <Link className="system-button bg-white hover:bg-system-grey" to="/piezimes">Visas piezīmes</Link>
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button bg-white hover:bg-system-grey">Izveidot jaunu</button>
+                <Link className="system-button bg-white hover:bg-system-grey" to="/pazinojumi">Visi paziņojumi</Link>
               </div>
             </div>
           </div>

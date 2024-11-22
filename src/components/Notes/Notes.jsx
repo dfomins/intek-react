@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { notes } from "../Data";
+import { notes } from "../Data/Data";
 
 function Notes() {
   const [searchInput, setSearchInput] = useState("");

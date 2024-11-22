@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { notifications } from "./Data";
+import { notifications } from "../Data/Data";
 
 function Notifications() {
   const [searchInput, setSearchInput] = useState("");
@@ -53,7 +53,7 @@ function Notifications() {
           ))}
         </ul>
         <div className="flex justify-center">
-          <button className="h-12 px-3 system-button hover:bg-system-green hover:text-white shadow-sm">
+          <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">
             Pievienot jaunu
           </button>
         </div>

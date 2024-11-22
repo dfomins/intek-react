@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { users } from "./Data";
+import { users } from "./Data/Data";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
 import { faPen } from '@fortawesome/free-solid-svg-icons'

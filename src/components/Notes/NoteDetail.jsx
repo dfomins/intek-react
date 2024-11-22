@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { notes } from "../Data";
+import { Link } from "react-router-dom";
+import { notes } from "../Data/Data";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -24,13 +25,13 @@ function NoteDetail() {
                             </div>
                         </div>
                         <div className="flex items-center">
-                            <FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" />
-                            <FontAwesomeIcon icon={faTrash} className="text-2xl cursor-pointer"/>
+                        <Link className="text-2xl cursor-pointer" to={`mainit`}><FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" /></Link>
+                        <FontAwesomeIcon icon={faTrash} className="text-2xl cursor-pointer"/>
                         </div>
                     </div>
                 </div>
-                <div className="panel-width mt-3">
-                    {note.content}
+                <div className="panel-width mt-3 break-words">
+                    <p className="">{note.content}</p>
                 </div>
             </div>
         );

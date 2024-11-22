@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="w-11/12 xl:min-w-[1200px] lg:min-w-[950px] flex m-auto justify-between md:justify-center lg:justify-between xl:justify-between items-center h-20 drop-shadow-md">
+      <nav className="w-11/12 xl:min-w-[1200px] lg:min-w-[950px] h-[80px] flex m-auto justify-between md:justify-center lg:justify-between xl:justify-between items-center drop-shadow-md">
         <div className="md:hidden lg:block">
           <Link to="/">
             <img className="max-w-16" src={logo} alt="Logo" />
