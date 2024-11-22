@@ -140,3 +140,15 @@ export const buildings = [{
     description: null,
     image: maskavasIelasObjectImage
 }];
+
+export const work = [{
+    id: 1,
+    worker: 1,
+    time: 8,
+    date: new Date('2024-11-22')
+}, {
+    id: 2,
+    worker: 1,
+    time: 6,
+    date: new Date('2024-11-21')
+}]

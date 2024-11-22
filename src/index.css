@@ -49,7 +49,7 @@
   }
 
   .page-title {
-    @apply text-center mb-7 font-medium;
+    @apply text-center mb-10 font-medium;
   }
 
   .system-button {
