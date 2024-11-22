@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { users } from "./Data";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
@@ -5,6 +6,16 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function AllUsers() {
+    const [searchInput, setSearchInput] = useState("");
+
+    const handleChange = (e) => {
+        setSearchInput(e.target.value);
+    }
+
+    const filteredUsers = users.filter((user) => {
+        return (user.name + " " + user.surname).toLowerCase().match(searchInput.toLowerCase());
+    });
+
     function setBackground(index) {
         if(index % 2 == 0) {
             return "bg-[#F3F3F3]";
@@ -18,8 +29,8 @@ function AllUsers() {
             <h1 className="page-title">Visi lietotāji</h1>
             <div>
                 <div className="mb-2 flex justify-between">
-                    <button className="px-2 system-button hover:bg-system-green hover:text-white">Izveidot jaunu lietotāju</button>
-                    <input type="text"  className="system-input" placeholder="Meklēt..."/>
+                    <button className="px-2 system-button bg-system-blue text-white hover:bg-system-green">Izveidot jaunu lietotāju</button>
+                    <input type="text"  className="system-input" placeholder="Meklēt..." onChange={handleChange} value={searchInput}/>
                 </div>
                 <div className="h-[600px] overflow-auto">
                     <table className="table-auto w-full shadow-sm">
@@ -35,7 +46,7 @@ function AllUsers() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user, index) => (
+                            {filteredUsers.map((user, index) => (
                                 <tr key={user.id} className={`${setBackground(index)}`}>
                                     <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
                                     <td className="p-3 text-start">{user.name}</td>

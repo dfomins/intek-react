@@ -8,7 +8,7 @@ function NoteCreate() {
                     <input type="text" className="system-input mb-4" />
                     <label>Saturs</label>
                     <textarea className="system-input min-h-[400px] mb-4 resize-none"></textarea>
-                    <button type="submit" className="p-2 bg-white hover:bg-[#c8d8e4] duration-300 rounded-sm text-black">Izveidot</button>
+                    <button type="submit" className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">Izveidot</button>
                 </form>
             </div>
         </div>

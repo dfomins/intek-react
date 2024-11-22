@@ -15,7 +15,7 @@ function Login() {
             <label>Parole</label>
             <input type="password" className="system-input w-full"/>
           </div>
-          <Link to="/"><button className="w-full h-12 system-button hover:bg-system-green hover:text-white">Pieslēgties</button></Link>
+          <Link to="/"><button className="w-full h-12 system-button bg-system-blue hover:bg-system-green text-white">Pieslēgties</button></Link>
         </div>
         <div style={{ backgroundImage: `url(${bgimage})` }} className="w-1/2 bg-cover bg-center rounded-r-lg" />
       </div>

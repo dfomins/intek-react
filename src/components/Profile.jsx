@@ -5,6 +5,25 @@ import profilePicture from "../images/profile/profile-picture.jpg";
 import { notes } from "./Data";
 import { notifications } from "./Data";
 
+let dayDefault = [
+  "Svētdiena",
+  "Pirmdiena",
+  "Otrdiena",
+  "Trešdiena",
+  "Ceturtdiena",
+  "Piektdiena",
+  "Sestdiena",
+];
+
+function CurrentDateAndDay() {
+  return (
+    <>
+      <p>{dayDefault[new Date().getDay()]}</p>
+      <p>{new Date().toLocaleDateString("lv-LV", { day: "numeric", month: "long" })}</p>
+    </>
+  );
+}
+
 function Profile() {
   return (
     <>
@@ -33,11 +52,7 @@ function Profile() {
         <div className="flex flex-col gap-12 w-full rounded-md text-white">
           <div className="flex flex-col bg-system-green rounded-md text-center">
             <div className="py-4 bg-system-blue rounded-t-md">
-              <p>
-                Datums
-                <br />
-                Diena
-              </p>
+              {CurrentDateAndDay()}
             </div>
             <div className="h-40 flex items-center justify-center grow">
               <h3>Nostrādātās stundas: 8</h3>
@@ -63,7 +78,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button hover:bg-system-grey">Izveidot jaunu</button>
+                <button className="system-button bg-white hover:bg-system-grey">Izveidot jaunu</button>
               </div>
             </div>
           </div>
@@ -87,7 +102,7 @@ function Profile() {
                 </ul>
               </div>
               <div>
-                <button className="system-button hover:bg-system-grey">Izveidot jaunu</button>
+                <button className="system-button bg-white hover:bg-system-grey">Izveidot jaunu</button>
               </div>
             </div>
           </div>

@@ -10,11 +10,11 @@ function Settings() {
                     <h2 className="mb-3 font-medium">Pamata informācija</h2>
                     <form>
                         <label>Vārds</label>
-                        <input className="w-full system-input mb-3" type="text" value={users[0].name}/>
+                        <input className="w-full system-input mb-3" type="text" defaultValue={users[0].name}/>
                         <label>Uzvārds</label>
-                        <input className="w-full system-input mb-3" type="text" value={users[0].surname}/>
+                        <input className="w-full system-input mb-3" type="text" defaultValue={users[0].surname}/>
                         <label>E-pasts</label>
-                        <input className="w-full system-input mb-5" type="text" value={users[0].email}/>
+                        <input className="w-full system-input mb-5" type="text" defaultValue={users[0].email}/>
                         <button type="submit" className="p-2 bg-white hover:bg-[#c8d8e4] duration-300 rounded-sm text-black">Apstiprināt</button>
                     </form>
                 </div>
@@ -36,7 +36,7 @@ function Settings() {
                         <label>Personas kods</label>
                         <input className="w-full system-input mb-3" type="text" />
                         <label>Dzimšanas datums</label>
-                        <input className="w-full system-input mb-3" type="date" value={users[0].birthDate} />
+                        <input className="w-full system-input mb-3" type="date" />
                         <label>Pilsēta</label>
                         <input className="w-full system-input mb-3" type="text" />
                         <label>Iela</label>
