@@ -1,3 +1,5 @@
+import userImage from '../../images/profile/profile-picture.jpg';
+
 export const users = [{
     id: 1,
     name: 'Daniels',
@@ -5,7 +7,8 @@ export const users = [{
     email: 'danielsfomins92@gmail.com',
     birthDate: new Date("2002-11-29"),
     objects: [1, 3, 5],
-    role: 'Vadītājs'
+    role: 'Vadītājs',
+    image: userImage
 }, {
     id: 2,
     name: 'Pēteris',
@@ -13,7 +16,8 @@ export const users = [{
     email: 'peterisasd@gmail.com',
     birthDate: new Date("2002-12-01"),
     objects: [null],
-    role: 'Darbinieks'
+    role: 'Darbinieks',
+    image: userImage
 }, {
     id: 3,
     name: 'Daniils',
@@ -21,7 +25,8 @@ export const users = [{
     email: 'daniils@gmail.com',
     birthDate: new Date("2001-03-08"),
     objects: [1],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 4,
     name: 'Berthe',
@@ -29,7 +34,8 @@ export const users = [{
     email: 'bhydechambers2@cdc.gov',
     birthDate: new Date("1961-07-19"),
     objects: [1, 2],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 5,
     name: 'Moshe',
@@ -37,7 +43,8 @@ export const users = [{
     email: 'mnowill3@huffingtonpost.com',
     birthDate: new Date("1966-05-01"),
     objects: [1],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 6,
     name: 'Renee',
@@ -45,7 +52,8 @@ export const users = [{
     email: 'risted4@seesaa.net',
     birthDate: new Date("1950-09-27"),
     objects: [2, 8],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 7,
     name: 'Janis',
@@ -53,7 +61,8 @@ export const users = [{
     email: 'jisaacs5@tmall.com',
     birthDate: new Date("1988-12-28"),
     objects: [3, 5],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 8,
     name: 'Eadie',
@@ -61,7 +70,8 @@ export const users = [{
     email: 'emacandrew6@creativecommons.org',
     birthDate: new Date("1951-10-10"),
     objects: [2],
-    role: 'Brigadieris'
+    role: 'Brigadieris',
+    image: userImage
 }, {
     id: 9,
     name: 'Dominica',
@@ -69,7 +79,8 @@ export const users = [{
     email: 'doloughnan7@blogs.com',
     birthDate: new Date("1961-03-30"),
     objects: [7],
-    role: 'Darbinieks'
+    role: 'Darbinieks',
+    image: userImage
 }, {
     id: 10,
     name: 'Eal',
@@ -77,7 +88,8 @@ export const users = [{
     email: 'eroggero8@baidu.com',
     birthDate: new Date("1976-04-24"),
     objects: [1, 2],
-    role: 'Darbinieks'
+    role: 'Darbinieks',
+    image: userImage
 }, {
     id: 11,
     name: 'Jeniffer',
@@ -85,7 +97,8 @@ export const users = [{
     email: 'jdoog9@hexun.com',
     birthDate: new Date("1956-08-27"),
     objects: [8],
-    role: 'Darbinieks'
+    role: 'Darbinieks',
+    image: userImage
 }]
 
 export const notes = [{

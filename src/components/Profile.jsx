@@ -1,9 +1,11 @@
 // class 'profile-list-item' is defined in the 'index.css' file
 
 import { Link } from "react-router-dom";
-import profilePicture from "../images/profile/profile-picture.jpg";
 import { notes } from "./Data/Data";
 import { notifications } from "./Data/Data";
+import { users } from "./Data/Data";
+
+let user = users[0];
 
 let dayDefault = [
   "Svētdiena",
@@ -29,10 +31,10 @@ function Profile() {
     <>
       <div className="panel-width my-14 flex justify-between max-lg:flex-col">
         <div className="w-auto h-fit px-10 py-8 lg:me-10 max-lg:mb-10 bg-system-green rounded-md text-center text-white">
-          <h2 className="mb-2 text-center text-[25px] font-bold truncate">Daniels Fomins</h2>
-          <h3 className="text-center text-[20px] font-medium">Vadītājs</h3>
+          <h2 className="mb-2 text-center text-[25px] font-bold truncate">{user.name + " " + user.surname}</h2>
+          <h3 className="text-center text-[20px] font-medium">{user.role}</h3>
           <div className="max-w-[400px] mx-auto my-6 w-full rounded-full border border-solid border-gray-400">
-            <img className="h-full w-full rounded-full object-cover" src={profilePicture} alt="Profila bilde" />
+            <img className="h-full w-full rounded-full object-cover" src={user.image} alt="Profila bilde" />
           </div>
           <div className="text-[18px] leading-[2.5]">
             <a href="#">
