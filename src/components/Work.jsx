@@ -35,7 +35,7 @@ function Work() {
           <table className="table-auto w-full shadow-sm ">
             <thead className="text-white">
               <tr>
-                  <th className="p-3 text-start sticky top-0 left-0 z-10 bg-system-blue">Nr.</th>
+                  <th className="ps-6 p-3 text-start sticky top-0 left-0 z-10 bg-system-blue">Nr.</th>
                   <th className="p-3 text-start sticky top-0 bg-system-blue">Vārds</th>
                   <th className="p-3 text-start sticky top-0 bg-system-blue">Uzvārds</th>
                   <th className="p-3 text-start sticky top-0 bg-system-blue">Stundas</th>
@@ -45,19 +45,7 @@ function Work() {
             <tbody>
               {users.map((user, index) => (
                 <tr key={user.id} className={`${setBackground(index)}`}>
-                    <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
-                    <td className="p-3 text-start">{user.name}</td>
-                    <td className="p-3 text-start">{user.surname}</td>
-                    <td className="p-3 text-start"></td>
-                    <td className={`p-3 text-center sticky right-0 ${setBackground(index)}`}>
-                        <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" />
-                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer"/>
-                    </td>
-                </tr>
-              ))}
-              {users.map((user, index) => (
-                <tr key={user.id} className={`${setBackground(index)}`}>
-                    <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
+                    <td className={`ps-6 p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
                     <td className="p-3 text-start">{user.name}</td>
                     <td className="p-3 text-start">{user.surname}</td>
                     <td className="p-3 text-start"></td>
