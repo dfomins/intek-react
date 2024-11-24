@@ -4,11 +4,10 @@ import logo from "../images/logo.png";
 import { useState } from "react";
 
 function Navbar() {
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function changeState() {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(!isMenuOpen);
   }
 
   return (
@@ -48,7 +47,7 @@ function Navbar() {
       </nav>
       <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md z-20 bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
         <div className="flex justify-end">
-          <i className="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState}/>
+          <i className="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState} />
         </div>
         <div className="flex flex-col p-6">
           <ul className="tracking-widest" onClick={changeState}>

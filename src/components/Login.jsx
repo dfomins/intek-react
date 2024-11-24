@@ -9,13 +9,15 @@ function Login() {
         <div className="w-1/2 flex flex-col gap-5 px-10 justify-center rounded-l-lg bg-system-grey">
           <div>
             <label>E-pasts</label>
-            <input type="text" className="system-input w-full"/>
+            <input type="text" className="system-input w-full" />
           </div>
           <div>
             <label>Parole</label>
-            <input type="password" className="system-input w-full"/>
+            <input type="password" className="system-input w-full" />
           </div>
-          <Link to="/"><button className="w-full h-12 system-button bg-system-blue hover:bg-system-green text-white">Pieslēgties</button></Link>
+          <Link to="/">
+            <button className="w-full h-12 system-button bg-system-blue hover:bg-system-green text-white">Pieslēgties</button>
+          </Link>
         </div>
         <div style={{ backgroundImage: `url(${bgimage})` }} className="w-1/2 bg-cover bg-center rounded-r-lg" />
       </div>

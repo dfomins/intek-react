@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import NotesRender from "./NotesRender";
+import { notes } from "../Data/Data";
 
 function Notes() {
   const [searchInput, setSearchInput] = useState("");
@@ -10,11 +10,23 @@ function Notes() {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-  }
+  };
 
   const orderChange = (e) => {
     setSortOrder(e.target.value);
-  }
+  };
+
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().match(searchInput.toLowerCase());
+  });
+
+  const sortedNotes = filteredNotes.sort((firstNote, secondNote) => {
+    if (sortOrder == "desc") {
+      return new Date(secondNote.createdAt) - new Date(firstNote.createdAt);
+    } else {
+      return new Date(firstNote.createdAt) - new Date(secondNote.createdAt);
+    }
+  });
 
   return (
     <div className="panel-width my-14">
@@ -27,7 +39,24 @@ function Notes() {
             <option value="asc">Vecākās</option>
           </select>
         </div>
-        <NotesRender searchInput={searchInput} sortOrder={sortOrder} />
+        {sortedNotes.length > 0 ? (
+          <ul className="h-[600px] mb-5 overflow-y-scroll text-white">
+            {sortedNotes.map((note, index) => (
+              <li key={note.id} className={`${index == notes.length - 1 ? "" : "mb-2"}`}>
+                <Link to={`${note.id}`}>
+                  <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
+                    <p className="text-lg font-medium truncate">{note.title}</p>
+                    <p>{note.createdAt.toLocaleDateString()}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="h-[600px]">
+            <h2 className="mt-8 text-center">Piezīmes netika atrastas!</h2>
+          </div>
+        )}
         <div className="flex justify-center">
           <button className="h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
             <Link to="/piezimes/jauna">Pievienot jaunu</Link>
