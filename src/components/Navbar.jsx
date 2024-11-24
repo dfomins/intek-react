@@ -43,7 +43,7 @@ function Navbar() {
             </Link>
           </ul>
         </div>
-        <i className="fa-solid fa-bars text-lg md:hidden cursor-pointer" onClick={changeState}></i>
+        <h4 className="fa-solid fa-bars md:hidden cursor-pointer" onClick={changeState}></h4>
       </nav>
       <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md z-20 bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
         <div className="flex justify-end">

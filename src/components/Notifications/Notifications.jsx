@@ -45,7 +45,7 @@ function Notifications() {
               <li key={notification.id} className={`${index == notifications.length - 1 ? "" : "mb-2"}`}>
                 <Link to={`${notification.id}`}>
                   <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
-                    <p className="text-lg font-medium truncate">{notification.title}</p>
+                    <h4 className="font-medium truncate">{notification.title}</h4>
                     <p>{notification.createdAt.toLocaleDateString()}</p>
                     <p>Izveidoja: {notification.createdBy}</p>
                   </div>

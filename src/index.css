@@ -10,6 +10,9 @@
   h3 {
     @apply text-xl;
   }
+  h4 {
+    @apply text-lg;
+  }
 }
 
 @tailwind components;
@@ -53,7 +56,7 @@
   }
 
   .system-button {
-    @apply px-2 py-1 rounded-sm duration-100
+    @apply px-2 py-1 rounded-sm duration-100;
   }
 
   .profile-settings-panel {

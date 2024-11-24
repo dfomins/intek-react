@@ -12,7 +12,7 @@ let dayDefault = ["Svētdiena", "Pirmdiena", "Otrdiena", "Trešdiena", "Ceturtdi
 function CurrentDateAndDay() {
   return (
     <>
-      <p>{dayDefault[new Date().getDay()]}</p>
+      <h4 className="font-semibold">{dayDefault[new Date().getDay()]}</h4>
       <p>
         {new Date().toLocaleDateString("lv-LV", {
           day: "numeric",
