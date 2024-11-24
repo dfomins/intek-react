@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import bgimage from "../images/login/login_bg.jpg";
-import logo from "../images/logo.png";
+import bgimage from "../images/login/login_bg_3.webp";
 
 function Login() {
   return (
@@ -19,7 +18,7 @@ function Login() {
             <button className="w-full h-12 system-button bg-system-blue hover:bg-system-green text-white">Pieslēgties</button>
           </Link>
         </div>
-        <div style={{ backgroundImage: `url(${bgimage})` }} className="w-1/2 bg-cover bg-center rounded-r-lg" />
+        <div style={{ backgroundImage: `url(${bgimage})` }} className="w-1/2 bg-cover bg-center rounded-r-lg blur-[2px]" />
       </div>
     </div>
   );

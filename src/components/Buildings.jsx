@@ -6,7 +6,7 @@ function Buildings() {
     <div className="panel-width my-14">
       <h1 className="page-title">Darba objekti</h1>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-        {buildings.map((building, index) => (
+        {buildings.map((building) => (
           <Link to={`${building.id}`} key={building.id}>
             <div className="max-md:max-w-[350px] max-md:mx-auto shadow-md">
               <img src={building.image} className="h-[300px] object-cover drop-shadow-2xl" />

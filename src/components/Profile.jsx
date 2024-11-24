@@ -48,7 +48,7 @@ function Profile() {
         <div className="flex flex-col gap-12 w-full rounded-md text-white">
           <div className="flex flex-col bg-system-green rounded-md text-center">
             <div className="py-4 bg-system-blue rounded-t-md">{CurrentDateAndDay()}</div>
-            <div className="h-40 flex items-center justify-center grow">
+            <div className="h-48 flex items-center justify-center grow">
               <h3>Nostrādātās stundas: 8</h3>
             </div>
           </div>
@@ -58,7 +58,7 @@ function Profile() {
             </div>
             <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                   {notes.map((note) => (
                     <li key={note.id}>
                       <Link to={`piezimes/${note.id}`}>

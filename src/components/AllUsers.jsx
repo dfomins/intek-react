@@ -32,7 +32,7 @@ function AllUsers() {
           <button className="px-2 system-button bg-system-blue text-white hover:bg-system-green">Izveidot jaunu lietotāju</button>
           <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleChange} value={searchInput} />
         </div>
-        <div className="max-h-[600px] overflow-auto">
+        <div className="h-[600px] overflow-auto">
           <table className="table-auto w-full shadow-sm">
             <thead className="text-white">
               <tr>
@@ -47,7 +47,7 @@ function AllUsers() {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="min-h-[500px]">
               {filteredUsers.map((user, index) => (
                 <tr key={user.id} className={`${setBackground(index)}`}>
                   <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>

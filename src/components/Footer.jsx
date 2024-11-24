@@ -13,25 +13,13 @@ function Footer() {
           <p>Intek - moderns portāls, lai jūs varētu veidot darba atskaites savā uzņēmumā. Viegla atskaišu sistēma ļaus atzīmēt stundu skaitu katram darbiniekam pāris minūšu garumā.</p>
         </div>
         <div className="max-md:w-6/12 mb-3">
-          <h3 className="text-[20px] font-semibold">Saites</h3>
+          <h3 className="mb-3 text-[20px] font-semibold">Papildus</h3>
           <ul>
-            <li>
-              <Link to="/">Profils</Link>
+            <li className="mb-2">
+              <Link to="/">Kontakti</Link>
             </li>
             <li>
-              <Link to="/piezimes">Piezīmes</Link>
-            </li>
-            <li>
-              <Link to="/pazinojumi">Paziņojumi</Link>
-            </li>
-            <li>
-              <Link to="/darbs">Darbs</Link>
-            </li>
-            <li>
-              <Link to="/atskaite">Atskaite</Link>
-            </li>
-            <li>
-              <Link to="/darba_objekti">Objekti</Link>
+              <Link to="/">Atsauksmes</Link>
             </li>
           </ul>
         </div>
