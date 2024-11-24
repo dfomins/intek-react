@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { users } from "./Data/Data";
+import { buildings } from "./Data/Data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +8,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 
 function Work() {
   const [value, setValue] = useState(dayjs(new Date()));
@@ -25,11 +26,20 @@ function Work() {
   return (
     <div className="panel-width my-14">
       <h1 className="page-title">Darbs</h1>
-      <div className="max-h-[600px] flex max-md:flex-col shadow-md">
-        <div className="px-3 border-r border-gray bg-white">
+      <div className="max-h-[1000px] md:max-h-[600px] flex max-md:flex-col shadow-md">
+        <div className="pb-5 px-3 border-r border-gray bg-white">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateCalendar value={value} disableFuture onChange={(newValue) => setValue(newValue)} />
           </LocalizationProvider>
+          <div className="px-2">
+            <label>Darbinieki:</label>
+            <select className="system-input w-full cursor-pointer">
+              <option value="all">Visos objektos</option>
+              {buildings.map((building) => (
+                <option value={building.id}>{building.title}</option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className="w-full overflow-y-auto">
           <table className="table-auto w-full shadow-sm ">
