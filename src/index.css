@@ -48,7 +48,7 @@
   }
 
   .system-input {
-    @apply outline-none p-2 rounded-sm border text-black border-slate-200;
+    @apply outline-none p-2 rounded-sm border text-black border-slate-200 shadow-sm;
   }
 
   .page-title {

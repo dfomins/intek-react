@@ -45,7 +45,7 @@ function Notes() {
               <li key={note.id} className={`${index == notes.length - 1 ? "" : "mb-2"}`}>
                 <Link to={`${note.id}`}>
                   <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
-                    <p className="text-lg font-medium truncate">{note.title}</p>
+                    <h4 className="font-medium truncate">{note.title}</h4>
                     <p>{note.createdAt.toLocaleDateString()}</p>
                   </div>
                 </Link>
