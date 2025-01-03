@@ -56,7 +56,7 @@ function Work() {
           </div>
         </div>
         <div className="w-full overflow-y-auto">
-          <table className="table-auto w-full shadow-sm ">
+          <table className="table-auto w-full shadow-sm">
             <thead className="text-white">
               <tr>
                 <th className="ps-6 p-3 text-start sticky top-0 left-0 z-10 bg-system-blue">Nr.</th>

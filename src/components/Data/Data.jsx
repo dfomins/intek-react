@@ -10,6 +10,29 @@ export const users = [
     buildings: [1, 2],
     role: "Vadītājs",
     image: userImage,
+    work: [
+      { id: 1, time: 8, date: new Date("2024-11-01") },
+      { id: 4, time: 8, date: new Date("2024-11-04") },
+      { id: 5, time: 8, date: new Date("2024-11-05") },
+      { id: 6, time: 8, date: new Date("2024-11-06") },
+      { id: 7, time: 8, date: new Date("2024-11-07") },
+      { id: 8, time: 8, date: new Date("2024-11-08") },
+      { id: 11, time: 8, date: new Date("2024-11-11") },
+      { id: 12, time: 8, date: new Date("2024-11-12") },
+      { id: 13, time: 8, date: new Date("2024-11-13") },
+      { id: 14, time: 8, date: new Date("2024-11-14") },
+      { id: 15, time: 8, date: new Date("2024-11-15") },
+      { id: 18, time: 8, date: new Date("2024-11-18") },
+      { id: 19, time: 8, date: new Date("2024-11-19") },
+      { id: 20, time: 8, date: new Date("2024-11-20") },
+      { id: 21, time: 8, date: new Date("2024-11-21") },
+      { id: 22, time: 8, date: new Date("2024-11-22") },
+      { id: 25, time: 8, date: new Date("2024-11-25") },
+      { id: 26, time: 8, date: new Date("2024-11-26") },
+      { id: 27, time: 8, date: new Date("2024-11-27") },
+      { id: 28, time: 8, date: new Date("2024-11-28") },
+      { id: 29, time: 8, date: new Date("2024-11-29") },
+    ],
   },
   {
     id: 2,
@@ -20,6 +43,18 @@ export const users = [
     buildings: null,
     role: "Darbinieks",
     image: userImage,
+    work: [
+      { id: 1, time: 4, date: new Date("2024-01-01") },
+      { id: 2, time: 5, date: new Date("2024-01-02") },
+      { id: 3, time: 6, date: new Date("2024-01-03") },
+      { id: 4, time: 7, date: new Date("2024-01-04") },
+      { id: 5, time: 8, date: new Date("2024-01-05") },
+      { id: 6, time: 4, date: new Date("2024-01-06") },
+      { id: 7, time: 5, date: new Date("2024-01-07") },
+      { id: 8, time: 6, date: new Date("2024-01-08") },
+      { id: 9, time: 7, date: new Date("2024-01-09") },
+      { id: 10, time: 8, date: new Date("2024-01-10") },
+    ],
   },
   {
     id: 3,
@@ -30,6 +65,7 @@ export const users = [
     buildings: [1],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 4,
@@ -40,6 +76,7 @@ export const users = [
     buildings: [1, 2],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 5,
@@ -50,6 +87,7 @@ export const users = [
     buildings: [1],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 6,
@@ -60,6 +98,7 @@ export const users = [
     buildings: [2, 8],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 7,
@@ -70,6 +109,7 @@ export const users = [
     buildings: [3, 5],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 8,
@@ -80,6 +120,7 @@ export const users = [
     buildings: [2],
     role: "Brigadieris",
     image: userImage,
+    work: [],
   },
   {
     id: 9,
@@ -90,6 +131,7 @@ export const users = [
     buildings: [7],
     role: "Darbinieks",
     image: userImage,
+    work: [],
   },
   {
     id: 10,
@@ -100,6 +142,7 @@ export const users = [
     buildings: [1, 2],
     role: "Darbinieks",
     image: userImage,
+    work: [],
   },
   {
     id: 11,
@@ -110,6 +153,7 @@ export const users = [
     buildings: [8],
     role: "Darbinieks",
     image: userImage,
+    work: [],
   },
 ];
 
@@ -173,20 +217,5 @@ export const buildings = [
     city: "Rīga",
     description: null,
     image: maskavasIelasObjectImage,
-  },
-];
-
-export const work = [
-  {
-    id: 1,
-    worker: 1,
-    time: 8,
-    date: new Date("2024-11-22"),
-  },
-  {
-    id: 2,
-    worker: 1,
-    time: 6,
-    date: new Date("2024-11-21"),
   },
 ];
