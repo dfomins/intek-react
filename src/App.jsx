@@ -9,7 +9,7 @@ import NoteCreate from "./components/Notes/NoteCreate.jsx";
 import Notifications from "./components/Notifications/Notifications.jsx";
 import Work from "./components/Work.jsx";
 import Report from "./components/Report.jsx";
-import Buildings from "./components/Buildings.jsx";
+import Buildings from "./components/Buildings/Buildings.jsx";
 import Footer from "./components/Footer.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AllUsers from "./components/AllUsers.jsx";
@@ -17,6 +17,7 @@ import NoteEdit from "./components/Notes/NoteEdit.jsx";
 import NotificationDetail from "./components/Notifications/NotificationDetail.jsx";
 import NotificationCreate from "./components/Notifications/NotificationCreate.jsx";
 import NotificationEdit from "./components/Notifications/NotificationEdit.jsx";
+import BuildingDetail from "./components/Buildings/BuildingDetail.jsx";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                     <Route path="/darbs" element={<Work />} />
                     <Route path="/atskaite" element={<Report />} />
                     <Route path="/darba_objekti" element={<Buildings />} />
+                    <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
                     <Route path="/visi_lietotaji" element={<AllUsers />} />
                   </Routes>
                 </section>
