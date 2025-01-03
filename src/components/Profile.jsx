@@ -34,9 +34,6 @@ function Profile() {
             <img className="h-full w-full rounded-full object-cover" src={user.image} alt="Profila bilde" />
           </div>
           <div className="text-[18px] leading-[2.5]">
-            <a href="#">
-              <p>Mani darba objekti</p>
-            </a>
             <Link to="/profila_iestatijumi">
               <p>Profila iestatījumi</p>
             </Link>
