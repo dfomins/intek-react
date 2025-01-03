@@ -54,7 +54,7 @@ function AllUsers() {
                   <td className="p-3 text-start">{user.name}</td>
                   <td className="p-3 text-start">{user.surname}</td>
                   <td className="p-3 text-start">{user.email}</td>
-                  <td className="p-3 text-start">{user.objects.join(", ")}</td>
+                  <td className="p-3 text-start">{user.buildings.join(", ")}</td>
                   <td className="p-3 text-start">{user.role}</td>
                   <td className={`p-3 text-center sticky right-0 ${setBackground(index)}`}>
                     <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" />

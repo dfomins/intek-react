@@ -9,9 +9,11 @@ function Report() {
     setUserId(e.target.value);
   };
 
+  let date = new Date();
+
   const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
+    startDate: new Date(date.getFullYear(), date.getMonth(), 1),
+    endDate: date,
   });
 
   const userWorkData = () => {
@@ -25,11 +27,11 @@ function Report() {
   return (
     <div className="panel-width my-14">
       <h1 className="page-title">Atskaite</h1>
-      <div className="flex mb-5">
-        <div className="w-4/12">
+      <div className="flex flex-col md:flex-row mb-5">
+        <div className="md:w-4/12 max-md:mb-2">
           <Datepicker displayFormat="DD/MM/YYYY" maxDate={maxDate} readOnly={true} separator="-" value={value} onChange={(newValue) => setValue(newValue)} />
         </div>
-        <select className="ms-5 rounded-lg" onChange={handleChange}>
+        <select className="md:ms-5 rounded-lg" onChange={handleChange}>
           {users.map((user) => (
             <option key={user.id} value={user.id}>
               {user.id + ". " + user.name + " " + user.surname}
@@ -39,16 +41,16 @@ function Report() {
       </div>
       <div className="max-h-[800px] overflow-y-auto">
         <table className="w-full text-left overflow-y-auto">
-          <thead className="bg-system-blue text-white">
+          <thead className="text-white">
             <tr>
-              <th className="p-4">Datums</th>
-              <th>Stundas</th>
+              <th className="p-3 sticky top-0 bg-system-blue">Datums</th>
+              <th className="sticky top-0 bg-system-blue">Stundas</th>
             </tr>
           </thead>
           <tbody className="bg-white">
             {displayedData.map((work) => (
               <tr key={work.id}>
-                <td className="p-3">
+                <td className="p-2">
                   {work.date.toLocaleDateString("lv-LV", {
                     day: "numeric",
                     month: "long",

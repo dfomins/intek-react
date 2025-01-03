@@ -40,7 +40,7 @@ export const users = [
     surname: "Asd",
     email: "peterisasd@gmail.com",
     birthDate: new Date("2002-12-01"),
-    buildings: null,
+    buildings: [],
     role: "Darbinieks",
     image: userImage,
     work: [
