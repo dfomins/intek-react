@@ -14,6 +14,9 @@ import Footer from "./components/Footer.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AllUsers from "./components/AllUsers.jsx";
 import NoteEdit from "./components/Notes/NoteEdit.jsx";
+import NotificationDetail from "./components/Notifications/NotificationDetail.jsx";
+import NotificationCreate from "./components/Notifications/NotificationCreate.jsx";
+import NotificationEdit from "./components/Notifications/NotificationEdit.jsx";
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
                     <Route path="/piezimes/:id" element={<NoteDetail />} />
                     <Route path="/piezimes/:id/mainit" element={<NoteEdit />} />
                     <Route path="/pazinojumi" element={<Notifications />} />
+                    <Route path="/pazinojumi/jauns" element={<NotificationCreate />} />
+                    <Route path="/pazinojumi/:id" element={<NotificationDetail />} />
+                    <Route path="/pazinojumi/:id/mainit" element={<NotificationEdit />} />
                     <Route path="/darbs" element={<Work />} />
                     <Route path="/atskaite" element={<Report />} />
                     <Route path="/darba_objekti" element={<Buildings />} />
