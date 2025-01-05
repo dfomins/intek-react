@@ -4,25 +4,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
 
 function AllUsers() {
+  // Meklēšana
   const [searchInput, setSearchInput] = useState("");
 
-  const handleChange = (e) => {
+  const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
   };
 
+  // Lietotāju meklēšana pēc teksta meklēšanas laukumā ievadītā teksta
   const filteredUsers = users.filter((user) => {
     return (user.name + " " + user.surname).toLowerCase().match(searchInput.toLowerCase());
   });
 
-  function setBackground(index) {
-    if (index % 2 == 0) {
-      return "bg-[#F3F3F3]";
-    } else {
-      return "bg-white";
-    }
-  }
+  const [editingUserId, setEditingUserId] = useState(null);
+
+  // Lietotāja informācijas rediģešana
+  const startEditing = (user) => {
+    console.log(user.id);
+    setEditingUserId(user.id);
+  };
+
+  const saveChanges = () => {
+    setEditingUserId(null);
+  };
+
+  const cancelEdit = () => {
+    setEditingUserId(null);
+  };
 
   return (
     <div className="panel-width my-14">
@@ -30,7 +42,7 @@ function AllUsers() {
       <div>
         <div className="mb-2 flex justify-between">
           <button className="px-2 system-button bg-system-blue text-white hover:bg-system-green">Izveidot jaunu lietotāju</button>
-          <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleChange} value={searchInput} />
+          <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleSearchChange} value={searchInput} />
         </div>
         <div className="h-[600px] overflow-auto">
           <table className="table-auto w-full shadow-sm">
@@ -48,18 +60,41 @@ function AllUsers() {
               </tr>
             </thead>
             <tbody className="min-h-[500px]">
-              {filteredUsers.map((user, index) => (
-                <tr key={user.id} className={`${setBackground(index)}`}>
-                  <td className={`p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
-                  <td className="p-3 text-start">{user.name}</td>
-                  <td className="p-3 text-start">{user.surname}</td>
-                  <td className="p-3 text-start">{user.email}</td>
-                  <td className="p-3 text-start">{user.buildings.join(", ")}</td>
-                  <td className="p-3 text-start">{user.role}</td>
-                  <td className={`p-3 text-center sticky right-0 ${setBackground(index)}`}>
-                    <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" />
-                    <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
-                  </td>
+              {filteredUsers.map((user) => (
+                <tr key={user.id} className="even:bg-white">
+                  {editingUserId == user.id ? (
+                    <>
+                      <td className="p-3 text-start sticky left-0">{user.id}</td>
+                      <td className="p-3 text-start">
+                        <input type="text" className="system-input max-w-48" value={user.name} />
+                      </td>
+                      <td className="p-3 text-start">
+                        <input type="text" className="system-input max-w-48" value={user.surname} />
+                      </td>
+                      <td className="p-3 text-start">
+                        <input type="text" className="system-input max-w-64" value={user.email} />
+                      </td>
+                      <td className="p-3 text-start">{user.buildings.join(", ")}</td>
+                      <td className="p-3 text-start">{user.role}</td>
+                      <td className="p-3 text-center sticky right-0">
+                        <FontAwesomeIcon icon={faCheck} className="mr-3 cursor-pointer" onClick={() => saveChanges()} />
+                        <FontAwesomeIcon icon={faBan} className="cursor-pointer" onClick={() => cancelEdit()} />
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="p-3 text-start sticky left-0">{user.id}</td>
+                      <td className="p-3 text-start">{user.name}</td>
+                      <td className="p-3 text-start">{user.surname}</td>
+                      <td className="p-3 text-start">{user.email}</td>
+                      <td className="p-3 text-start">{user.buildings.join(", ")}</td>
+                      <td className="p-3 text-start">{user.role}</td>
+                      <td className="p-3 text-center sticky right-0">
+                        <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" onClick={() => startEditing(user)} />
+                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
+                      </td>
+                    </>
+                  )}
                 </tr>
               ))}
             </tbody>

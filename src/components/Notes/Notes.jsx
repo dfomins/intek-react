@@ -16,10 +16,12 @@ function Notes() {
     setSortOrder(e.target.value);
   };
 
+  // Piezīmju meklēšana pēc teksta meklēšanas laukumā ievadītā teksta
   const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().match(searchInput.toLowerCase());
   });
 
+  // Piezīmju filtrēšana pēc izveidošanas datuma
   const sortedNotes = filteredNotes.sort((firstNote, secondNote) => {
     if (sortOrder == "desc") {
       return new Date(secondNote.createdAt) - new Date(firstNote.createdAt);

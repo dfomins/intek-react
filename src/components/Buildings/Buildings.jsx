@@ -12,10 +12,12 @@ function Buildings() {
     setChecked(e.target.checked);
   };
 
+  // Atlasa objektus, kuri tiek piesaistīti lietotājam
   const getFilteredBuildings = () => {
     return buildings.filter((building) => user.buildings.includes(building.id));
   };
 
+  // Ja tiek atzīmēts checkbox, tad tiek parādīti filtrēti objekti, citādi - visi objekti
   const displayedBuildings = checked ? getFilteredBuildings() : buildings;
 
   return (

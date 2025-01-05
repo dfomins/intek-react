@@ -1,28 +1,24 @@
-import { Datepicker } from "flowbite-react";
-
+import Datepicker from "react-tailwindcss-datepicker";
+import { useState } from "react";
 import { users } from "./Data/Data";
 import { buildings } from "./Data/Data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 function Work() {
+  const [dateValue, setDateValue] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
   const [date, setDate] = useState(new Date());
 
   const handleDateChange = (date) => {
     setDate(date);
     console.log(date);
   };
-
-  function setBackground(index) {
-    if (index % 2 == 0) {
-      return "bg-[#F3F3F3]";
-    } else {
-      return "bg-white";
-    }
-  }
 
   const customTheme = {
     popup: {
@@ -41,9 +37,24 @@ function Work() {
     <div className="panel-width my-14">
       <h1 className="page-title">Darbs</h1>
       <div className="max-h-[1000px] md:max-h-[600px] flex max-md:flex-col shadow-md">
-        <div className="flex flex-col items-center pb-5 px-3 border-r border-gray bg-white">
-          <Datepicker value={date} onChange={handleDateChange} theme={customTheme} inline maxDate={new Date()} weekStart={1} showClearButton={false} labelTodayButton="Šodiena" />
-          <div className="px-4">
+        <div className="flex flex-col items-center pt-5 px-5 border-r border-gray bg-white">
+          <div>
+            <label>Datums:</label>
+            <Datepicker
+              i18n={"lv"}
+              startWeekOn="mon"
+              primaryColor={"green"}
+              inputClassName="system-input w-full mb-3 text-md cursor-pointer"
+              toggleClassName="absolute right-0 px-3 mt-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+              displayFormat="DD/MM/YYYY"
+              useRange={false}
+              asSingle={true}
+              readOnly={true}
+              value={dateValue}
+              onChange={(newValue) => setDateValue(newValue)}
+            />
+          </div>
+          <div>
             <label>Darbinieki:</label>
             <select className="system-input w-full cursor-pointer">
               <option value="all">Visos objektos</option>
@@ -70,12 +81,12 @@ function Work() {
             </thead>
             <tbody>
               {users.map((user, index) => (
-                <tr key={user.id} className={`${setBackground(index)}`}>
-                  <td className={`ps-6 p-3 text-start sticky left-0 ${setBackground(index)}`}>{user.id}</td>
+                <tr key={user.id} className="even:bg-white">
+                  <td className="ps-6 p-3 text-start sticky left-0">{user.id}</td>
                   <td className="p-3 text-start">{user.name}</td>
                   <td className="p-3 text-start">{user.surname}</td>
                   <td className="p-3 text-start"></td>
-                  <td className={`p-3 text-center sticky right-0 ${setBackground(index)}`}>
+                  <td className="p-3 text-center sticky right-0">
                     <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" />
                     <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
                   </td>
