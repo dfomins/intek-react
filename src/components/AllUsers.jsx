@@ -24,14 +24,15 @@ function AllUsers() {
 
   // Lietotāja informācijas rediģešana
   const startEditing = (user) => {
-    console.log(user.id);
     setEditingUserId(user.id);
   };
 
+  // Saglabāt lietotāja informācijas izmaiņas (nav līdz galam realizēts)
   const saveChanges = () => {
     setEditingUserId(null);
   };
 
+  // Atcelt lietotāja informācijas izmaiņas
   const cancelEdit = () => {
     setEditingUserId(null);
   };
@@ -40,15 +41,14 @@ function AllUsers() {
     <div className="panel-width my-14">
       <h1 className="page-title">Visi lietotāji</h1>
       <div>
-        <div className="mb-2 flex justify-between">
-          <button className="px-2 system-button bg-system-blue text-white hover:bg-system-green">Izveidot jaunu lietotāju</button>
+        <div className="mb-2 flex max-md:flex-col justify-between">
           <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleSearchChange} value={searchInput} />
         </div>
         <div className="h-[600px] overflow-auto">
           <table className="table-auto w-full shadow-sm">
             <thead className="text-white">
               <tr>
-                <th className="p-3 text-start sticky top-0 left-0 z-10 bg-system-blue">Nr.</th>
+                <th className="p-3 text-center sticky top-0 left-0 z-20 bg-system-blue">Nr.</th>
                 <th className="p-3 text-start sticky top-0 bg-system-blue">Vārds</th>
                 <th className="p-3 text-start sticky top-0 bg-system-blue">Uzvārds</th>
                 <th className="p-3 text-start sticky top-0 bg-system-blue">E-pasts</th>
@@ -64,7 +64,7 @@ function AllUsers() {
                 <tr key={user.id} className="even:bg-white">
                   {editingUserId == user.id ? (
                     <>
-                      <td className="p-3 text-start sticky left-0">{user.id}</td>
+                      <td className="p-3 text-center sticky left-0 text-white bg-system-blue">{user.id}</td>
                       <td className="p-3 text-start">
                         <input type="text" className="system-input max-w-48" value={user.name} />
                       </td>
@@ -76,20 +76,20 @@ function AllUsers() {
                       </td>
                       <td className="p-3 text-start">{user.buildings.join(", ")}</td>
                       <td className="p-3 text-start">{user.role}</td>
-                      <td className="p-3 text-center sticky right-0">
+                      <td className="p-3 text-center sticky right-0 text-white bg-system-blue">
                         <FontAwesomeIcon icon={faCheck} className="mr-3 cursor-pointer" onClick={() => saveChanges()} />
                         <FontAwesomeIcon icon={faBan} className="cursor-pointer" onClick={() => cancelEdit()} />
                       </td>
                     </>
                   ) : (
                     <>
-                      <td className="p-3 text-start sticky left-0">{user.id}</td>
+                      <td className="p-3 text-center sticky left-0 text-white bg-system-blue">{user.id}</td>
                       <td className="p-3 text-start">{user.name}</td>
                       <td className="p-3 text-start">{user.surname}</td>
                       <td className="p-3 text-start">{user.email}</td>
                       <td className="p-3 text-start">{user.buildings.join(", ")}</td>
                       <td className="p-3 text-start">{user.role}</td>
-                      <td className="p-3 text-center sticky right-0">
+                      <td className="p-3 text-center sticky right-0 text-white bg-system-blue">
                         <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" onClick={() => startEditing(user)} />
                         <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
                       </td>
@@ -98,8 +98,14 @@ function AllUsers() {
                 </tr>
               ))}
             </tbody>
+            <tbody>
+              <tr>
+                <td colSpan={7} className="p-3 sticky bottom-0 border-t-2 border-[#52ab98] bg-white">
+                  Kopā: {users.length}
+                </td>
+              </tr>
+            </tbody>
           </table>
-          <div className="p-3 sticky bottom-0 border-t-2 border-[#52ab98] bg-white">Kopā: {users.length}</div>
         </div>
       </div>
     </div>

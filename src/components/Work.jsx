@@ -37,7 +37,7 @@ function Work() {
     <div className="panel-width my-14">
       <h1 className="page-title">Darbs</h1>
       <div className="max-h-[1000px] md:max-h-[600px] flex max-md:flex-col shadow-md">
-        <div className="flex flex-col items-center pt-5 px-5 border-r border-gray bg-white">
+        <div className="flex flex-col items-center p-5 border-r border-gray bg-white">
           <div>
             <label>Datums:</label>
             <Datepicker
