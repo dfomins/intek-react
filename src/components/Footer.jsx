@@ -16,7 +16,7 @@ function Footer() {
           <h3 className="mb-3 text-[20px] font-semibold">Papildus</h3>
           <ul>
             <li className="mb-2">
-              <Link to="/">Kontakti</Link>
+              <Link to="/kontakti">Kontakti</Link>
             </li>
             <li>
               <Link to="/">Atsauksmes</Link>

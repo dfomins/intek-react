@@ -18,6 +18,7 @@ import NotificationDetail from "./components/Notifications/NotificationDetail.js
 import NotificationCreate from "./components/Notifications/NotificationCreate.jsx";
 import NotificationEdit from "./components/Notifications/NotificationEdit.jsx";
 import BuildingDetail from "./components/Buildings/BuildingDetail.jsx";
+import Contacts from "./components/Contacts.jsx";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                     <Route path="/darba_objekti" element={<Buildings />} />
                     <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
                     <Route path="/visi_lietotaji" element={<AllUsers />} />
+                    <Route path="/kontakti" element={<Contacts />} />
                   </Routes>
                 </section>
               </main>
