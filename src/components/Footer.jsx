@@ -18,9 +18,6 @@ function Footer() {
             <li className="mb-2">
               <Link to="/kontakti">Kontakti</Link>
             </li>
-            <li>
-              <Link to="/">Atsauksmes</Link>
-            </li>
           </ul>
         </div>
         <div className="mb-3">
