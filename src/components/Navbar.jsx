@@ -6,6 +6,7 @@ import { useState } from "react";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Navbar poga telefoniem, lai atvērtu sāna izvēlni
   function changeState() {
     setIsMenuOpen(!isMenuOpen);
   }

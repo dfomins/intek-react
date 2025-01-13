@@ -6,11 +6,13 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function Contacts() {
+  // Konteinteris priekš google kartes
   const mapContainerStyle = {
     width: "100%",
     height: "400px",
   };
 
+  // Koordinātas kartei
   const center = {
     lat: 56.65592489680563,
     lng: 23.733927880516042,
@@ -28,6 +30,7 @@ function Contacts() {
     setTextAreaText(e.target.value);
   };
 
+  // Validācija
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -49,6 +52,7 @@ function Contacts() {
     }
   };
 
+  // Funkcija, kura attēlo google karti
   const GoogleMapWithMarker = () => {
     const { isLoaded, loadError } = useLoadScript({
       googleMapsApiKey: "AIzaSyAhucz4NELppEqcUcJjudbqqyu2bt91m7c",

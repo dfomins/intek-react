@@ -22,11 +22,13 @@ function Report() {
     return users.find((user) => user.id == userId).work.filter((work) => work.date >= dateValue.startDate && new Date(work.date).setHours(0, 0, 0, 0) <= dateValue.endDate);
   };
 
+  // Dati grafikam
   const data = userWorkData().map((item) => ({
     datums: item.date.toLocaleDateString("en-GB"),
     uv: item.time,
   }));
 
+  // Grafiks, ārējā bibliotēka
   const renderLineChart = (
     <div className="w-full h-[400px] me-8">
       <ResponsiveContainer>

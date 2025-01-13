@@ -9,6 +9,7 @@ let user = users[0];
 
 let dayDefault = ["Svētdiena", "Pirmdiena", "Otrdiena", "Trešdiena", "Ceturtdiena", "Piektdiena", "Sestdiena"];
 
+// Funkcija, ar kuras palīdzību var izvadīt šodienas datumu
 function CurrentDateAndDay() {
   return (
     <>

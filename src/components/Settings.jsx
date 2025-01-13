@@ -7,13 +7,13 @@ import { users } from "./Data/Data";
 const user = users[0];
 
 function Settings() {
+  // Dati priekš datumu izvēlnes lauka
   const [dateValue, setDateValue] = useState({
     startDate: user.birthDate,
     endDate: user.birthDate,
   });
 
-  const { control, handleSubmit } = useForm({});
-  const onSubmit = (data) => console.log(data);
+  const { handleSubmit } = useForm({});
 
   return (
     <div className="panel-width my-14">

@@ -8,17 +8,11 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function Work() {
+  // Dati priekš datumu izvēlnes
   const [dateValue, setDateValue] = useState({
     startDate: new Date(),
     endDate: new Date(),
   });
-
-  const [date, setDate] = useState(new Date());
-
-  const handleDateChange = (date) => {
-    setDate(date);
-    console.log(date);
-  };
 
   const customTheme = {
     popup: {
