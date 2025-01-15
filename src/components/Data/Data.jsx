@@ -10,6 +10,16 @@ export const users = [
     objects: [1, 3, 5],
     role: "Vadītājs",
     image: userImage,
+    works: [
+      {
+        hours: 8,
+        date: new Date("2024-11-22"),
+      },
+      {
+        hours: 6,
+        date: new Date("2024-11-21"),
+      },
+    ],
   },
   {
     id: 2,
@@ -173,20 +183,5 @@ export const buildings = [
     city: "Rīga",
     description: null,
     image: maskavasIelasObjectImage,
-  },
-];
-
-export const work = [
-  {
-    id: 1,
-    worker: 1,
-    time: 8,
-    date: new Date("2024-11-22"),
-  },
-  {
-    id: 2,
-    worker: 1,
-    time: 6,
-    date: new Date("2024-11-21"),
   },
 ];

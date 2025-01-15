@@ -40,7 +40,7 @@
   }
 
   .navbar-li {
-    @apply hover:text-[#52ab98] duration-300;
+    @apply hover:text-[#f2f2f2] md:hover:text-[#52ab98] font-semibold duration-300;
   }
 
   .profile-list-item {

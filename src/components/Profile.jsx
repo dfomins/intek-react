@@ -54,7 +54,7 @@ function Profile() {
           </div>
           <div className="flex flex-col bg-system-green rounded-md">
             <div className="py-4 bg-system-blue rounded-t-md text-center font-medium">
-              <h3>Paziņojumi</h3>
+              <h3>Manas piezīmes</h3>
             </div>
             <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">
@@ -80,7 +80,7 @@ function Profile() {
           </div>
           <div className="flex flex-col bg-system-green rounded-md">
             <div className="py-4 bg-system-blue rounded-t-md text-center font-medium">
-              <h3>Manas piezīmes</h3>
+              <h3>Paziņojumi</h3>
             </div>
             <div className="flex flex-col items-center grow py-3 text-black">
               <div className="w-full px-3 pt-2 pb-3">

@@ -9,10 +9,10 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function Work() {
-  const [date, setDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
-    setDate(date);
+    setSelectedDate(date);
     console.log(date);
   };
 
@@ -43,7 +43,7 @@ function Work() {
         <h1 className="page-title">Darbs</h1>
         <div className="max-h-[1000px] md:max-h-[600px] flex max-md:flex-col shadow-md">
           <div className="flex flex-col items-center pb-5 px-3 border-r border-gray bg-white">
-            <Datepicker value={date} onChange={handleDateChange} theme={customTheme} inline maxDate={new Date()} weekStart={1} showClearButton={false} labelTodayButton="Šodiena" />
+            <Datepicker value={selectedDate} onChange={handleDateChange} theme={customTheme} inline maxDate={new Date()} weekStart={1} showClearButton={false} labelTodayButton="Šodiena" />
             <div className="px-4">
               <label>Darbinieki:</label>
               <select className="system-input w-full cursor-pointer">
