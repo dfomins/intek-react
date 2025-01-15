@@ -59,7 +59,9 @@ function Notifications() {
           </div>
         )}
         <div className="flex justify-center">
-          <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">Pievienot jaunu</button>
+          <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">
+            <Link to="/pazinojumi/jauns">Pievienot jaunu</Link>
+          </button>
         </div>
       </div>
     </div>
