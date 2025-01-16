@@ -21,7 +21,7 @@ function Settings() {
       <div className="grid md:grid-cols-2 gap-7 text-white">
         <div className="profile-settings-panel">
           <h2 className="mb-3 font-medium">Pamata informācija</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <label>Vārds</label>
             <input className="w-full system-input mb-3" type="text" defaultValue={users[0].name} />
             <label>Uzvārds</label>
