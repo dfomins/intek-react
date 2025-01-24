@@ -55,7 +55,7 @@ function Contacts() {
   // Funkcija, kura attēlo google karti
   const GoogleMapWithMarker = () => {
     const { isLoaded, loadError } = useLoadScript({
-      googleMapsApiKey: "AIzaSyAhucz4NELppEqcUcJjudbqqyu2bt91m7c",
+      googleMapsApiKey: "",
     });
 
     if (loadError) return <div>Error</div>;
