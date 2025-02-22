@@ -1,3 +1,3 @@
 # WWW kursa darbs
-
-## Daniels Fomins ITIA2
+### Celtniecības uzņēmuma darbinieku darba uzskaites dienasgrāmata
+### Frontend
