@@ -19,46 +19,51 @@ import NotificationCreate from "./components/Notifications/NotificationCreate.js
 import NotificationEdit from "./components/Notifications/NotificationEdit.jsx";
 import BuildingDetail from "./components/Buildings/BuildingDetail.jsx";
 import Contacts from "./components/Contacts.jsx";
+import NoMatch from "./components/NoMatch/NoMatch.jsx";
+import { PrivateRoute } from "./components/PrivateRoute";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route exact path="/login" element={<Login />} />
-        <Route
-          path="*"
-          element={
-            <>
-              <Navbar />
-              <main>
-                <section className="min-h-[calc(100vh-80px)] w-screen flex justify-center bg-system-grey">
-                  <Routes>
-                    <Route exact path="/" element={<Profile />} />
-                    <Route exact path="/profila_iestatijumi" element={<Settings />} />
-                    <Route path="/piezimes" element={<Notes />} />
-                    <Route path="/piezimes/jauna" element={<NoteCreate />} />
-                    <Route path="/piezimes/:id" element={<NoteDetail />} />
-                    <Route path="/piezimes/:id/mainit" element={<NoteEdit />} />
-                    <Route path="/pazinojumi" element={<Notifications />} />
-                    <Route path="/pazinojumi/jauns" element={<NotificationCreate />} />
-                    <Route path="/pazinojumi/:id" element={<NotificationDetail />} />
-                    <Route path="/pazinojumi/:id/mainit" element={<NotificationEdit />} />
-                    <Route path="/darbs" element={<Work />} />
-                    <Route path="/atskaite" element={<Report />} />
-                    <Route path="/darba_objekti" element={<Buildings />} />
-                    <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
-                    <Route path="/visi_lietotaji" element={<AllUsers />} />
-                    <Route path="/kontakti" element={<Contacts />} />
-                  </Routes>
-                </section>
-              </main>
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
-    </Router>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route exact path="/login" element={<Login />} />
+                <Route element={<PrivateRoute />}>
+                    <Route
+                        path="*"
+                        element={
+                            <>
+                                <Navbar />
+                                <main>
+                                    <section className="min-h-[calc(100vh-80px)] flex justify-center bg-system-grey">
+                                        <Routes>
+                                            <Route exact path="/profils" element={<Profile />} />
+                                            <Route exact path="/profila_iestatijumi" element={<Settings />} />
+                                            <Route path="/piezimes" element={<Notes />} />
+                                            <Route path="/piezimes/jauna" element={<NoteCreate />} />
+                                            <Route path="/piezimes/:id" element={<NoteDetail />} />
+                                            <Route path="/piezimes/:id/mainit" element={<NoteEdit />} />
+                                            <Route path="/pazinojumi" element={<Notifications />} />
+                                            <Route path="/pazinojumi/jauns" element={<NotificationCreate />} />
+                                            <Route path="/pazinojumi/:id" element={<NotificationDetail />} />
+                                            <Route path="/pazinojumi/:id/mainit" element={<NotificationEdit />} />
+                                            <Route path="/darbs" element={<Work />} />
+                                            <Route path="/atskaite" element={<Report />} />
+                                            <Route path="/darba_objekti" element={<Buildings />} />
+                                            <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
+                                            <Route path="/visi_lietotaji" element={<AllUsers />} />
+                                            <Route path="/kontakti" element={<Contacts />} />
+                                            <Route path="*" element={<NoMatch />} />
+                                        </Routes>
+                                    </section>
+                                </main>
+                                <Footer />
+                            </>
+                        }
+                    />
+                </Route>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
