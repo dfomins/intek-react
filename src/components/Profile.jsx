@@ -44,8 +44,19 @@ function Profile() {
         fetchUser();
     }, []);
 
-    if (error) return <p className="text-red-500">{error}</p>;
-    if (!user) return <p>Loading...</p>;
+    if (error)
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="text-red-500 font-bold">{error}</h2>
+            </div>
+        );
+    if (!user) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="font-bold">Notiek ielāde...</h2>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -54,7 +65,7 @@ function Profile() {
                     <h2 className="mb-2 text-center text-[25px] font-bold truncate">{user.name + " " + user.surname}</h2>
                     <h3 className="text-center text-[20px] font-medium">{user.role}</h3>
                     <div className="max-w-[400px] mx-auto my-6 w-full rounded-full border border-solid border-gray-400">
-                        <img className="h-full w-full rounded-full object-cover" src={user.image} alt="Profila bilde" />
+                        <img className="h-full w-full rounded-full object-cover" src={user.imagePath} alt="Profila bilde" />
                     </div>
                     <div className="text-[18px] leading-[2.5]">
                         <Link to="/profila_iestatijumi">
