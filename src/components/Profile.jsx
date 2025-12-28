@@ -1,15 +1,8 @@
-// class 'profile-list-item' is defined in the 'index.css' file
-
 import { Link } from "react-router-dom";
-import { notes } from "./Data/Data";
-import { notifications } from "./Data/Data";
-// import { users } from "./Data/Data";
 
 // Service
 import { userService } from "../services/profileService";
 import { useEffect, useState } from "react";
-
-// let user = users[0];
 
 let dayDefault = ["Svētdiena", "Pirmdiena", "Otrdiena", "Trešdiena", "Ceturtdiena", "Piektdiena", "Sestdiena"];
 
@@ -90,16 +83,24 @@ function Profile() {
                         <div className="flex flex-col items-center grow py-3 text-black">
                             <div className="w-full px-3 pt-2 pb-3">
                                 <ul className="space-y-3">
-                                    {notes.map((note) => (
-                                        <li key={note.id}>
-                                            <Link to={`piezimes/${note.id}`}>
-                                                <div className="profile-list-item">
-                                                    <p>{note.title}</p>
-                                                    <p>Izveidota: {note.createdAt.toLocaleDateString()}</p>
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    ))}
+                                    {user.notes && user.notes.length > 0 ? (
+                                        user.notes.map((note) => {
+                                            const createdAtDate = new Date(note.createdAt);
+
+                                            return (
+                                                <li key={note.id}>
+                                                    <Link to={`piezimes/${note.id}`}>
+                                                        <div className="profile-list-item">
+                                                            <p>{note.title}</p>
+                                                            <p>Izveidota: {createdAtDate.toLocaleDateString()}</p>
+                                                        </div>
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })
+                                    ) : (
+                                        <p className="text-center text-white my-5">Nav piezīmju</p>
+                                    )}
                                 </ul>
                             </div>
                             <div>
@@ -116,16 +117,24 @@ function Profile() {
                         <div className="flex flex-col items-center grow py-3 text-black">
                             <div className="w-full px-3 pt-2 pb-3">
                                 <ul className="space-y-2">
-                                    {notifications.map((notification) => (
-                                        <li key={notification.id}>
-                                            <Link to={`pazinojumi/${notification.id}`}>
-                                                <div className="profile-list-item">
-                                                    <p>{notification.title}</p>
-                                                    <p>Izveidots: {notification.createdAt.toLocaleDateString()}</p>
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    ))}
+                                    {user.notifications && user.notifications.length > 0 ? (
+                                        user.notifications.map((notification) => {
+                                            const createdAtDate = new Date(notification.createdAt);
+
+                                            return (
+                                                <li key={notification.id}>
+                                                    <Link to={`pazinojumi/${notification.id}`}>
+                                                        <div className="profile-list-item">
+                                                            <p>{notification.title}</p>
+                                                            <p>Izveidots: {createdAtDate.toLocaleDateString()}</p>
+                                                        </div>
+                                                    </Link>
+                                                </li>
+                                            );
+                                        })
+                                    ) : (
+                                        <li className="text-center text-white my-5">Nav paziņojumu</li>
+                                    )}
                                 </ul>
                             </div>
                             <div>
