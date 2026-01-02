@@ -23,6 +23,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.6.0",
     "react-router-dom": "^6.27.0",
     "react-tailwindcss-datepicker": "^1.7.2",
     "react-validation": "^3.0.7",

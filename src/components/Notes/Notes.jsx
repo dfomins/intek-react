@@ -101,9 +101,9 @@ function Notes() {
                     </div>
                 )}
                 <div className="flex justify-center">
-                    <button className="h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
-                        <Link to="/piezimes/jauna">Pievienot jaunu</Link>
-                    </button>
+                    <Link to="/piezimes/jauna" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
+                        <p>Pievienot jaunu</p>
+                    </Link>
                 </div>
             </div>
         </div>

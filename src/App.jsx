@@ -21,10 +21,12 @@ import BuildingDetail from "./components/Buildings/BuildingDetail.jsx";
 import Contacts from "./components/Contacts.jsx";
 import NoMatch from "./components/NoMatch/NoMatch.jsx";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     return (
         <Router>
+            <Toaster position="top-center" />
             <Routes>
                 <Route exact path="/login" element={<Login />} />
                 <Route element={<PrivateRoute />}>

@@ -22,7 +22,7 @@ function Login() {
             navigate("/profils");
         } catch (err) {
             console.error(err);
-            setError("Invalid email or password");
+            setError("Nepareizs e-pasts vai parole");
         }
     };
 

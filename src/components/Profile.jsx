@@ -89,7 +89,7 @@ function Profile() {
 
                                             return (
                                                 <li key={note.id}>
-                                                    <Link to={`piezimes/${note.id}`}>
+                                                    <Link to={`/piezimes/${note.id}`}>
                                                         <div className="profile-list-item">
                                                             <p>{note.title}</p>
                                                             <p>Izveidota: {createdAtDate.toLocaleDateString()}</p>
@@ -123,7 +123,7 @@ function Profile() {
 
                                             return (
                                                 <li key={notification.id}>
-                                                    <Link to={`pazinojumi/${notification.id}`}>
+                                                    <Link to={`/pazinojumi/${notification.id}`}>
                                                         <div className="profile-list-item">
                                                             <p>{notification.title}</p>
                                                             <p>Izveidots: {createdAtDate.toLocaleDateString()}</p>

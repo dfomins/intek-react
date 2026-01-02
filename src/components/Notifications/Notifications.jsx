@@ -1,71 +1,112 @@
 // class 'page-title' is defined in the 'index.css' file
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { notifications } from "../Data/Data";
+import { useEffect, useState } from "react";
+
+// Service
+import { notificationService } from "../../services/notificationService";
 
 function Notifications() {
-  const [searchInput, setSearchInput] = useState("");
-  const [sortOrder, setSortOrder] = useState("desc");
+    const [notifications, setNotifications] = useState([]);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
 
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+    const [searchInput, setSearchInput] = useState("");
+    const [sortOrder, setSortOrder] = useState("desc");
 
-  const orderChange = (e) => {
-    setSortOrder(e.target.value);
-  };
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            try {
+                const response = await notificationService.getNotifications();
+                const notificationsWithDates = response.data.map((notification) => ({
+                    ...notification,
+                    createdAtDate: new Date(notification.createdAt),
+                }));
+                setNotifications(notificationsWithDates);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch notifications");
+            } finally {
+                setLoading(false);
+            }
+        };
 
-  const filteredNotifications = notifications.filter((notification) => {
-    return notification.title.toLowerCase().match(searchInput.toLowerCase());
-  });
+        fetchNotifications();
+    }, []);
 
-  const sortedNotifications = filteredNotifications.sort((firstNotif, secondNotif) => {
-    if (sortOrder == "desc") {
-      return new Date(secondNotif.createdAt) - new Date(firstNotif.createdAt);
-    } else {
-      return new Date(firstNotif.createdAt) - new Date(secondNotif.createdAt);
+    if (loading) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="font-bold">Notiek ielāde...</h2>
+            </div>
+        );
     }
-  });
 
-  return (
-    <div className="panel-width my-14">
-      <h1 className="page-title">Paziņojumi</h1>
-      <div>
-        <div className="mb-3 flex max-sm:flex-col">
-          <input className="sm:mr-2 max-sm:mb-2 system-input" placeholder="Meklēt pēc nosaukuma" onChange={handleChange} value={searchInput} />
-          <select className="sm:w-40 system-input" onChange={orderChange}>
-            <option value="desc">Jaunākie</option>
-            <option value="asc">Vecākie</option>
-          </select>
+    if (error) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="text-red-500 font-bold">{error}</h2>
+            </div>
+        );
+    }
+
+    const handleChange = (e) => {
+        setSearchInput(e.target.value);
+    };
+
+    const orderChange = (e) => {
+        setSortOrder(e.target.value);
+    };
+
+    const filteredNotifications = notifications.filter((notification) => {
+        return notification.title.toLowerCase().match(searchInput.toLowerCase());
+    });
+
+    const sortedNotifications = filteredNotifications.sort((a, b) => {
+        if (sortOrder === "desc") {
+            return b.createdAtDate - a.createdAtDate;
+        } else {
+            return a.createdAtDate - b.createdAtDate;
+        }
+    });
+
+    return (
+        <div className="panel-width my-14">
+            <h1 className="page-title">Paziņojumi</h1>
+            <div>
+                <div className="mb-3 flex max-sm:flex-col">
+                    <input className="sm:mr-2 max-sm:mb-2 system-input" placeholder="Meklēt pēc nosaukuma" onChange={handleChange} value={searchInput} />
+                    <select className="sm:w-40 system-input" onChange={orderChange}>
+                        <option value="desc">Jaunākie</option>
+                        <option value="asc">Vecākie</option>
+                    </select>
+                </div>
+                {sortedNotifications.length > 0 ? (
+                    <ul className="h-[600px] mb-5 overflow-y-scroll text-white">
+                        {sortedNotifications.map((notification, index) => (
+                            <li key={notification.id} className={`${index == notifications.length - 1 ? "" : "mb-2"}`}>
+                                <Link to={`${notification.id}`}>
+                                    <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
+                                        <h4 className="font-medium truncate">{notification.title}</h4>
+                                        <p>{notification.createdAtDate.toLocaleDateString()}</p>
+                                        <p>Izveidoja: {notification.createdBy}</p>
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div className="h-[600px]">
+                        <h2 className="mt-8 text-center">Paziņojumi netika atrasti!</h2>
+                    </div>
+                )}
+                <div className="flex justify-center">
+                    <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">
+                        <Link to="/pazinojumi/jauns">Pievienot jaunu</Link>
+                    </button>
+                </div>
+            </div>
         </div>
-        {sortedNotifications.length > 0 ? (
-          <ul className="h-[600px] mb-5 overflow-y-scroll text-white">
-            {sortedNotifications.map((notification, index) => (
-              <li key={notification.id} className={`${index == notifications.length - 1 ? "" : "mb-2"}`}>
-                <Link to={`${notification.id}`}>
-                  <div className="p-3 bg-system-blue hover:bg-system-blue-hovered rounded-sm">
-                    <h4 className="font-medium truncate">{notification.title}</h4>
-                    <p>{notification.createdAt.toLocaleDateString()}</p>
-                    <p>Izveidoja: {notification.createdBy}</p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="h-[600px]">
-            <h2 className="mt-8 text-center">Paziņojumi netika atrasti!</h2>
-          </div>
-        )}
-        <div className="flex justify-center">
-          <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">
-            <Link to="/pazinojumi/jauns">Pievienot jaunu</Link>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Notifications;
