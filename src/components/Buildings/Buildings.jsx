@@ -1,12 +1,50 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { buildings } from "../Data/Data";
-import { users } from "../Data/Data";
+import { useEffect, useState } from "react";
 
-let user = users[0];
+// Service
+import { workObjectService } from "../../services/workObjectService";
 
 function Buildings() {
+    const [workObjects, setWorkObjects] = useState([]);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
+
     const [checked, setChecked] = useState(false);
+
+    useEffect(() => {
+        const fetchWorkObjects = async () => {
+            try {
+                const response = await workObjectService.getObjects();
+                const workObjects = response.data.map((object) => ({
+                    ...object,
+                }));
+                setWorkObjects(workObjects);
+                console.log(workObjects);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch work objects");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchWorkObjects();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="font-bold">Notiek ielāde...</h2>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="text-red-500 font-bold">{error}</h2>
+            </div>
+        );
+    }
 
     const handleCheckedChange = (e) => {
         setChecked(e.target.checked);
@@ -18,7 +56,7 @@ function Buildings() {
     };
 
     // Ja tiek atzīmēts checkbox, tad tiek parādīti filtrēti objekti, citādi - visi objekti
-    const displayedBuildings = checked ? getFilteredBuildings() : buildings;
+    const displayedWorkObjects = checked ? getFilteredWorkObjects() : workObjects;
 
     return (
         <div className="panel-width my-14">
@@ -29,18 +67,18 @@ function Buildings() {
                     <span className="font-medium text-lg align-middle">Mani objekti</span>
                 </label>
             </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-                {displayedBuildings.map((building) => (
-                    <Link to={`${building.id}`} key={building.id}>
+            <div className="h-[600px] grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
+                {displayedWorkObjects.map((workObject) => (
+                    <Link to={`${workObject.id}`} key={workObject.id}>
                         <div className="max-md:max-w-[350px] max-md:mx-auto shadow-md">
-                            <img src={building.image} className="h-[300px] object-cover drop-shadow-2xl" />
-                            <div className="bg-system-blue p-3 text-white">{building.title}</div>
+                            <img src={workObject.imagePath} className="h-[300px] object-cover drop-shadow-2xl" />
+                            <div className="bg-system-blue p-3 text-white">{workObject.title}</div>
                         </div>
                     </Link>
                 ))}
             </div>
             <div className="flex justify-center">
-                <Link to="/piezimes/jauna" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
+                <Link to="/darba_objekti/jauns" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
                     <p>Pievienot jaunu</p>
                 </Link>
             </div>

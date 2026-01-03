@@ -15,7 +15,6 @@ const getCurrentUser = () => {
     const token = localStorage.getItem("token");
     if (!token) return null;
 
-    // Optionally decode JWT to get user info
     const payload = JSON.parse(atob(token.split(".")[1]));
     return { email: payload.sub, role: payload.role };
 };

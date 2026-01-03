@@ -16,6 +16,15 @@ function NoteCreate() {
     const [titleCounter, setTitleCounter] = useState(0);
     const [contentCounter, setContentCounter] = useState(0);
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+
+        if (name === "title") setTitleCounter(value.length);
+        if (name === "content") setContentCounter(value.length);
+        console.log(formValues);
+    };
+
     useEffect(() => {
         console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -33,15 +42,6 @@ function NoteCreate() {
         }
 
         return errors;
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({ ...formValues, [name]: value });
-
-        if (name === "title") setTitleCounter(value.length);
-        if (name === "content") setContentCounter(value.length);
-        console.log(formValues);
     };
 
     const handleSubmit = async (e) => {

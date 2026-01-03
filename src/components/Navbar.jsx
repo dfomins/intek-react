@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { authService } from "../services/authService";
 
 function Navbar() {
+    const currentUser = authService.getCurrentUser();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -40,9 +42,11 @@ function Navbar() {
                         <Link to="/pazinojumi">
                             <li className="navbar-li">Paziņojumi</li>
                         </Link>
-                        <Link to="/darbs">
-                            <li className="navbar-li">Darbs</li>
-                        </Link>
+                        {currentUser.role == "ROLE_MANAGER" && (
+                            <Link to="/darbs">
+                                <li className="navbar-li">Darbs</li>
+                            </Link>
+                        )}
                         <Link to="atskaite">
                             <li className="navbar-li">Atskaite</li>
                         </Link>

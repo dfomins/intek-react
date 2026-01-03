@@ -1,5 +1,5 @@
 import "./Login.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import bgimage from "../images/login/login_bg_3.webp";
 
@@ -8,17 +8,21 @@ import { authService } from "../services/authService";
 import { useState } from "react";
 
 function Login() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
         try {
             await authService.login(email, password);
+
             navigate("/profils");
         } catch (err) {
             console.error(err);
@@ -31,7 +35,7 @@ function Login() {
             <div className="inner-container">
                 <div className="left-panel">
                     {error && <p className="text-red-500 mt-2">{error}</p>}
-                    <form onSubmit={handleLogin}>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label className="label">E-pasts</label>
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />

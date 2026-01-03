@@ -16,12 +16,4 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// export const userService = {
-//   getAll: () => api.get('/users'),
-//   getById: (id) => api.get(`/products/${id}`),
-//   create: (data) => api.post('/products', data),
-//   update: (id, data) => api.put(`/products/${id}`, data),
-//   delete: (id) => api.delete(`/products/${id}`)
-// };
-
 export default api;

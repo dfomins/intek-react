@@ -41,18 +41,12 @@ function NoteEdit() {
 
         if (name === "title") setTitleCounter(value.length);
         if (name === "content") setContentCounter(value.length);
-        console.log(formValues);
     };
 
     const validate = (values) => {
         const errors = {};
-        if (!values.title) {
-            errors.title = "Nosaukums ir obligāts";
-        }
-        if (!values.content) {
-            errors.content = "Saturs nevar būt tukšs";
-        }
-
+        if (!values.title) errors.title = "Nosaukums ir obligāts";
+        if (!values.content) errors.content = "Saturs nevar būt tukšs";
         return errors;
     };
 

@@ -1,10 +1,12 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { noteService } from "../../services/noteService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
+
+// Service
+import { noteService } from "../../services/noteService";
 
 function NoteDetail() {
     const navigate = useNavigate();
@@ -22,7 +24,7 @@ function NoteDetail() {
             navigate("/piezimes");
         } catch (error) {
             console.error(error);
-            toast.error("Kļūda saglabājot piezīmi");
+            toast.error("Kļūda dzēšot piezīmi");
         }
     };
 
@@ -32,7 +34,6 @@ function NoteDetail() {
                 const response = await noteService.getNote(id);
                 const noteData = response.data;
 
-                // Defensive date parsing
                 let createdAtDate = null;
                 if (noteData.createdAt) {
                     const parsed = new Date(noteData.createdAt);

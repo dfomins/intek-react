@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 
 // Service
 import { notificationService } from "../../services/notificationService";
+import { authService } from "../../services/authService";
 
 function Notifications() {
+    const currentUser = authService.getCurrentUser();
+
     const [notifications, setNotifications] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -99,11 +102,13 @@ function Notifications() {
                         <h2 className="mt-8 text-center">Paziņojumi netika atrasti!</h2>
                     </div>
                 )}
-                <div className="flex justify-center">
-                    <button className="h-12 px-3 system-button bg-system-blue hover:bg-system-green text-white shadow-sm">
-                        <Link to="/pazinojumi/jauns">Pievienot jaunu</Link>
-                    </button>
-                </div>
+                {currentUser.role == "ROLE_MANAGER" && (
+                    <div className="flex justify-center">
+                        <Link to="/pazinojumi/jauns" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
+                            <p>Pievienot jaunu</p>
+                        </Link>
+                    </div>
+                )}
             </div>
         </div>
     );
