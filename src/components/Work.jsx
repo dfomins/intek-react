@@ -1,47 +1,135 @@
 import Datepicker from "react-tailwindcss-datepicker";
 import { useEffect, useState } from "react";
-// import { users } from "./Data/Data";
+import { format } from "date-fns";
 import { buildings } from "./Data/Data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
+// Service
+import { userService } from "../services/userService";
+import { workObjectService } from "../services/workObjectService";
+import { workRecordService } from "../services/workRecordService";
+
 function Work() {
     const [users, setUsers] = useState([]);
+    const [objects, setObjects] = useState([]);
+    const [workRecords, setWorkRecords] = useState([]);
+    const [error, setError] = useState("");
+    const [loadingUsers, setLoadingUsers] = useState(true);
+    const [loadingObjects, setLoadingObjects] = useState(true);
+    const [loadingWorkRecords, setLoadingWorkRecords] = useState(true);
+
+    const [selectedObjectId, setSelectedObjectId] = useState(null);
+
+    const initialDate = new Date();
+
+    // Dati priekš datumu izvēlnes
+    const [dateValue, setDateValue] = useState({
+        startDate: initialDate,
+        endDate: initialDate,
+    });
+
+    const [formattedDate, setFormattedDate] = useState(format(initialDate, "yyyy-MM-dd"));
 
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/users");
-                const data = await response.json();
-
-                setUsers(data);
-            } catch (error) {
-                console.error("Error fetching employees: ", error.message);
+                const response = await userService.getUsers(selectedObjectId);
+                const users = response.data.map((user) => ({
+                    ...user,
+                }));
+                setUsers(users);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch users");
+            } finally {
+                setLoadingUsers(false);
             }
         };
 
         fetchUsers();
+    }, [selectedObjectId]);
+
+    useEffect(() => {
+        const fetchObjects = async () => {
+            try {
+                const response = await workObjectService.getObjectsSimple();
+                const objects = response.data.map((object) => ({
+                    ...object,
+                }));
+                setObjects(objects);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch objects");
+            } finally {
+                setLoadingObjects(false);
+            }
+        };
+
+        fetchObjects();
     }, []);
 
-    // Dati priekš datumu izvēlnes
-    const [dateValue, setDateValue] = useState({
-        startDate: new Date(),
-        endDate: new Date(),
-    });
+    useEffect(() => {
+        const fetchWorkRecords = async () => {
+            try {
+                const response = await workRecordService.getWorkRecords(formattedDate);
+                const workRecords = response.data.map((workRecord) => ({
+                    ...workRecord,
+                }));
+                setWorkRecords(workRecords);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch work records");
+            } finally {
+                setLoadingWorkRecords(false);
+            }
+        };
 
-    const customTheme = {
-        popup: {
-            root: {
-                inner: "inline-block rounded-lg bg-white p-4 dark:bg-gray-700",
-            },
-            footer: {
-                button: {
-                    base: "w-full rounded-lg px-5 py-2 text-center text-sm font-medium",
-                },
-            },
-        },
+        fetchWorkRecords();
+    }, [dateValue]);
+
+    useEffect(() => {
+        if (dateValue?.startDate) {
+            setFormattedDate(format(dateValue.startDate, "yyyy-MM-dd"));
+        }
+    }, [formattedDate]);
+
+    const workRecordByWorkerId = workRecords.reduce((acc, record) => {
+        acc[record.worker_id] = record;
+        return acc;
+    }, {});
+
+    const isLoading = loadingUsers || loadingObjects;
+
+    if (isLoading) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="font-bold">Notiek ielāde...</h2>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="text-red-500 font-bold">{error}</h2>
+            </div>
+        );
+    }
+
+    const handleDateChange = (newValue) => {
+        setDateValue(newValue);
+        if (newValue) {
+            const formatted = format(newValue.startDate, "yyyy-MM-dd");
+            setFormattedDate(formatted);
+        } else {
+            setFormattedDate("");
+        }
+    };
+
+    const handleObjectChange = (e) => {
+        const value = e.target.value;
+
+        setSelectedObjectId(value === "all" ? null : Number(value));
     };
 
     return (
@@ -56,22 +144,23 @@ function Work() {
                             startWeekOn="mon"
                             primaryColor={"green"}
                             inputClassName="system-input w-full mb-3 text-md cursor-pointer"
-                            toggleClassName="absolute right-0 px-3 mt-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
+                            toggleClassName="absolute hidden right-0 px-3 mt-3 text-gray-400 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed"
                             displayFormat="DD/MM/YYYY"
                             useRange={false}
                             asSingle={true}
                             readOnly={true}
+                            maxDate={new Date()}
                             value={dateValue}
-                            onChange={(newValue) => setDateValue(newValue)}
+                            onChange={handleDateChange}
                         />
                     </div>
                     <div>
                         <label>Darbinieki:</label>
-                        <select className="system-input w-full cursor-pointer">
+                        <select className="system-input w-full cursor-pointer" value={selectedObjectId ?? "all"} onChange={handleObjectChange}>
                             <option value="all">Visos objektos</option>
-                            {buildings.map((building) => (
-                                <option key={building.id} value={building.id}>
-                                    {building.title}
+                            {objects.map((object) => (
+                                <option key={object.id} value={object.id}>
+                                    {object.title}
                                 </option>
                             ))}
                         </select>
@@ -85,24 +174,28 @@ function Work() {
                                 <th className="p-3 text-start sticky top-0 bg-system-blue">Vārds</th>
                                 <th className="p-3 text-start sticky top-0 bg-system-blue">Uzvārds</th>
                                 <th className="p-3 text-start sticky top-0 bg-system-blue">Stundas</th>
-                                <th className="min-w-[75px] p-3 sticky top-0 right-0 z-10 bg-system-blue">
+                                {/* <th className="min-w-[75px] p-3 sticky top-0 right-0 z-10 bg-system-blue">
                                     <FontAwesomeIcon icon={faGear} />
-                                </th>
+                                </th> */}
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user) => (
-                                <tr key={user.id} className="even:bg-white">
-                                    <td className="ps-6 p-3 text-start sticky left-0">{user.id}</td>
-                                    <td className="p-3 text-start">{user.name}</td>
-                                    <td className="p-3 text-start">{user.surname}</td>
-                                    <td className="p-3 text-start"></td>
-                                    <td className="p-3 text-center sticky right-0">
+                            {users.map((user) => {
+                                const record = workRecordByWorkerId[user.id];
+                                return (
+                                    <tr key={user.id} className="even:bg-white">
+                                        <td className="ps-6 p-3 text-start sticky left-0">{user.id}</td>
+                                        <td className="p-3 text-start">{user.name}</td>
+                                        <td className="p-3 text-start">{user.surname}</td>
+                                        <td className="p-3 text-start">{record?.hours ?? ""}</td>
+
+                                        {/* <td className="p-3 text-center sticky right-0">
                                         <FontAwesomeIcon icon={faPen} className="mr-3 cursor-pointer" />
                                         <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
-                                    </td>
-                                </tr>
-                            ))}
+                                    </td> */}
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

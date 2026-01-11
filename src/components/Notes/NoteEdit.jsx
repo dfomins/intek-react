@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -7,6 +7,7 @@ import { noteService } from "../../services/noteService";
 
 function NoteEdit() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const initialFormValues = { title: "", content: "" };
     const [formValues, setFormValues] = useState(initialFormValues);

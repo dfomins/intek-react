@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-// import { users } from "./Data/Data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 
 // Service
 import { userService } from "../services/userService";
+import { workObjectService } from "../services/workObjectService";
 
 function AllUsers() {
     const [users, setUsers] = useState([]);
+    const [objects, setObjects] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -24,6 +26,7 @@ function AllUsers() {
                     ...user,
                 }));
                 setUsers(users);
+                console.log(users);
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch users");
             } finally {
@@ -32,6 +35,25 @@ function AllUsers() {
         };
 
         fetchUsers();
+    }, []);
+
+    useEffect(() => {
+        const fetchObjects = async () => {
+            try {
+                const response = await workObjectService.getObjects();
+                console.log(response.data);
+                const objects = response.data.map((object) => ({
+                    ...object,
+                }));
+                setObjects(objects);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch objects");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchObjects();
     }, []);
 
     // Meklēšana
@@ -54,8 +76,29 @@ function AllUsers() {
     };
 
     // Saglabāt lietotāja informācijas izmaiņas (nav līdz galam realizēts)
-    const saveChanges = () => {
-        setEditingUserId(null);
+    const saveChanges = async (user) => {
+        try {
+            let payload = {};
+        } catch (error) {
+            setError("Failed to save user information");
+        }
+
+        try {
+            let payload = {
+                user_id: user.id,
+                object_ids: user.objectIds || [],
+            };
+
+            await workObjectService.syncUserObjects(payload);
+            toast.success("Lietotāja informācija tika veiksmīgi atjaunota!", {
+                style: {
+                    minWidth: "400px",
+                },
+            });
+            setEditingUserId(null);
+        } catch (error) {
+            setError("Failed to save user objects");
+        }
     };
 
     // Atcelt lietotāja informācijas izmaiņas
@@ -80,7 +123,7 @@ function AllUsers() {
                                 <th className="p-3 text-start">Vārds</th>
                                 <th className="p-3 text-start">Uzvārds</th>
                                 <th className="p-3 text-start">E-pasts</th>
-                                <th className="p-3 text-start">Objekti</th>
+                                {/* <th className="p-3 text-start">Objekti</th> */}
                                 <th className="p-3 text-start">Loma</th>
                                 <th className="p-3 text-center sticky right-0 z-40 bg-system-blue">
                                     <FontAwesomeIcon icon={faGear} />
@@ -102,7 +145,7 @@ function AllUsers() {
                                                     <td className={`p-3 text-start ${rowBg}`}>
                                                         <input
                                                             type="text"
-                                                            className="system-input w-full"
+                                                            className="system-input py-0"
                                                             value={user.name}
                                                             onChange={(e) => setUsers((prev) => prev.map((u) => (u.id === user.id ? { ...u, name: e.target.value } : u)))}
                                                         />
@@ -110,7 +153,7 @@ function AllUsers() {
                                                     <td className={`p-3 text-start ${rowBg}`}>
                                                         <input
                                                             type="text"
-                                                            className="system-input w-full"
+                                                            className="system-input py-0"
                                                             value={user.surname}
                                                             onChange={(e) => setUsers((prev) => prev.map((u) => (u.id === user.id ? { ...u, surname: e.target.value } : u)))}
                                                         />
@@ -118,7 +161,7 @@ function AllUsers() {
                                                     <td className={`p-3 text-start ${rowBg}`}>
                                                         <input
                                                             type="text"
-                                                            className="system-input w-full"
+                                                            className="system-input py-0"
                                                             value={user.email}
                                                             onChange={(e) => setUsers((prev) => prev.map((u) => (u.id === user.id ? { ...u, email: e.target.value } : u)))}
                                                         />
@@ -131,18 +174,18 @@ function AllUsers() {
                                                     <td className={`p-3 text-start ${rowBg}`}>{user.email}</td>
                                                 </>
                                             )}
-                                            <td className={`p-3 text-start ${rowBg}`}>{user.buildings?.join(", ") || "-"}</td>
+                                            {/* <td className={`p-3 text-start ${rowBg}`}>{user.buildings?.join(", ") || "-"}</td> */}
                                             <td className={`p-3 text-start ${rowBg}`}>{user.role}</td>
                                             <td className={`p-3 text-center sticky right-0 z-30 ${rowBg} whitespace-nowrap`}>
                                                 {isEditing ? (
-                                                    <div className="flex gap-2">
-                                                        <FontAwesomeIcon icon={faCheck} className="cursor-pointer text-green-500" onClick={() => setEditingUserId(null)} />
-                                                        <FontAwesomeIcon icon={faBan} className="cursor-pointer text-red-500" onClick={() => setEditingUserId(null)} />
+                                                    <div className="flex justify-center gap-4">
+                                                        <FontAwesomeIcon icon={faCheck} className="cursor-pointer" onClick={() => saveChanges(user)} />
+                                                        <FontAwesomeIcon icon={faBan} className="cursor-pointer" onClick={() => setEditingUserId(null)} />
                                                     </div>
                                                 ) : (
-                                                    <div className="flex gap-2">
-                                                        <FontAwesomeIcon icon={faPen} className="cursor-pointer text-blue-500" onClick={() => startEditing(user)} />
-                                                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer text-red-500" />
+                                                    <div className="flex justify-center gap-4">
+                                                        <FontAwesomeIcon icon={faPen} className="cursor-pointer" onClick={() => startEditing(user)} />
+                                                        <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
                                                     </div>
                                                 )}
                                             </td>
@@ -203,21 +246,24 @@ function AllUsers() {
 
                                                     <div className="mt-4">
                                                         <h4 className="mb-2 font-semibold">Darba objekti</h4>
-                                                        <div className="flex flex-wrap gap-2">
+                                                        <div className="flex flex-col gap-2">
                                                             {objects.map((obj) => (
                                                                 <label key={obj.id} className="flex items-center gap-1">
                                                                     <input
                                                                         type="checkbox"
-                                                                        checked={user.objects?.includes(obj.id) || false}
+                                                                        checked={user.objectIds?.includes(obj.id) || false}
                                                                         onChange={(e) =>
                                                                             setUsers((prev) =>
-                                                                                prev.map((u) => {
-                                                                                    if (u.id !== user.id) return u;
-                                                                                    const updatedObjects = e.target.checked
-                                                                                        ? [...(u.objects || []), obj.id]
-                                                                                        : (u.objects || []).filter((id) => id !== obj.id);
-                                                                                    return { ...u, objects: updatedObjects };
-                                                                                })
+                                                                                prev.map((u) =>
+                                                                                    u.id !== user.id
+                                                                                        ? u
+                                                                                        : {
+                                                                                              ...u,
+                                                                                              objectIds: e.target.checked
+                                                                                                  ? [...(u.objectIds || []), obj.id]
+                                                                                                  : (u.objectIds || []).filter((id) => id !== obj.id),
+                                                                                          }
+                                                                                )
                                                                             )
                                                                         }
                                                                     />
