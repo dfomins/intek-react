@@ -51,18 +51,18 @@ function App() {
                         <Route path="/piezimes/:id" element={<NoteDetail />} />
                         <Route path="/piezimes/:id/mainit" element={<NoteEdit />} />
                         <Route path="/pazinojumi" element={<Notifications />} />
+                        <Route path="/pazinojumi/:id" element={<NotificationDetail />} />
                         <Route path="/darba_objekti" element={<Buildings />} />
                         <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
                         <Route path="/kontakti" element={<Contacts />} />
 
                         {/* Employee */}
-                        <Route element={<PrivateRoute allowedRoles={["ROLE_EMPLOYEE"]} />}>
+                        <Route element={<PrivateRoute allowedRoles={(["ROLE_EMPLOYEE"], ["ROLE_FOREMAN"])} />}>
                             <Route path="/atskaite" element={<EmployeeReport />} />
                         </Route>
 
                         {/* Foreman */}
                         <Route element={<PrivateRoute allowedRoles={["ROLE_FOREMAN"]} />}>
-                            <Route path="/atskaite" element={<EmployeeReport />} />
                             <Route path="/brigadieris/darbs" element={<ForemanWork />} />
                         </Route>
 

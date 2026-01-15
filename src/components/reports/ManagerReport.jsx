@@ -10,9 +10,12 @@ import { managerReportService } from "../../services/report/manager.service";
 function ManagerReport() {
     const [users, setUsers] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState(null);
-    const [report, setReport] = useState([]);
+    const [userReport, setUserReport] = useState({
+        work_records: [],
+    });
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loadingUsers, setLoadingUsers] = useState(true);
+    const [loadingReport, setLoadingReport] = useState(true);
 
     let date = new Date();
 
@@ -34,7 +37,7 @@ function ManagerReport() {
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch users");
             } finally {
-                setLoading(false);
+                setLoadingUsers(false);
             }
         };
 
@@ -48,33 +51,33 @@ function ManagerReport() {
     }, [users, selectedUserId]);
 
     useEffect(() => {
-        const fetchReport = async () => {
+        const fetchUserReport = async () => {
             try {
                 const response = await managerReportService.getReport(selectedUserId, formattedDates.startDate, formattedDates.endDate);
-                const report = response.data.map((reportRecord) => ({
-                    ...reportRecord,
-                }));
-
-                setReport(report);
-            } catch (err) {
-                setError(err.response?.data?.message || "Failed to fetch report");
+                setUserReport(response.data);
+            } catch (error) {
+                setError(error.response?.data?.message || "Failed to fetch report");
+                console.log(error);
             } finally {
-                setLoading(false);
+                setLoadingReport(false);
             }
         };
 
-        if (selectedUserId) fetchReport();
+        if (selectedUserId) fetchUserReport();
     }, [selectedUserId, formattedDates]);
 
     const formattedRange = `${format(formattedDates.startDate, "dd/MM/yyyy", { locale: lv })} - ${format(formattedDates.endDate, "dd/MM/yyyy", { locale: lv })}`;
 
     const selectedUser = users.find((u) => u.id === selectedUserId);
-    const totalHours = report.reduce((sum, record) => {
+
+    const totalHours = userReport.work_records.reduce((sum, record) => {
         const hours = Number(record.hours);
         return sum + (isNaN(hours) ? 0 : hours);
     }, 0);
 
-    if (loading) {
+    const isLoading = loadingUsers || loadingReport;
+
+    if (isLoading) {
         return (
             <div className="my-14 flex items-center justify-center max-lg:flex-col">
                 <h2 className="font-bold">Notiek ielāde...</h2>
@@ -115,7 +118,6 @@ function ManagerReport() {
                         }}
                     />
                 </div>
-                {/* {reportService.canSelectUser && ( */}
                 <select className="system-input pr-11 h-10 pl-3 py-2 cursor-pointer" value={selectedUserId ?? ""} onChange={(e) => setSelectedUserId(Number(e.target.value))}>
                     {users.map((user) => (
                         <option key={user.id} value={user.id}>
@@ -123,8 +125,6 @@ function ManagerReport() {
                         </option>
                     ))}
                 </select>
-                {/* )} */}
-
                 <button className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -149,8 +149,8 @@ function ManagerReport() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
-                                        {report.length > 0 ? (
-                                            report.map((reportRecord) => {
+                                        {userReport.work_records.length > 0 ? (
+                                            userReport.work_records.map((reportRecord) => {
                                                 const reportRecordDate = new Date(reportRecord.date);
 
                                                 return (

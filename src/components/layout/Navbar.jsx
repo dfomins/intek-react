@@ -77,9 +77,7 @@ function Navbar() {
                         </li>
                         {currentUser.role == "ROLE_MANAGER" && (
                             <li className="mb-2 navbar-li">
-                                <Link to="/darbs">
-                                    <li className="navbar-li">Darbs</li>
-                                </Link>
+                                <Link to="/darbs">Darbs</Link>
                             </li>
                         )}
                         <Link to={currentUser.role === "ROLE_MANAGER" ? "/vaditajs/atskaite" : "/atskaite"}>

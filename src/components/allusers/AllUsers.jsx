@@ -21,12 +21,10 @@ function AllUsers() {
         const fetchUsers = async () => {
             try {
                 const response = await userService.getUsers();
-                console.log(response.data);
                 const users = response.data.map((user) => ({
                     ...user,
                 }));
                 setUsers(users);
-                console.log(users);
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch users");
             } finally {
@@ -41,7 +39,6 @@ function AllUsers() {
         const fetchObjects = async () => {
             try {
                 const response = await workObjectService.getObjects();
-                console.log(response.data);
                 const objects = response.data.map((object) => ({
                     ...object,
                 }));
@@ -117,32 +114,26 @@ function AllUsers() {
     return (
         <div className="panel-width my-14">
             <h1 className="page-title">Visi lietotāji</h1>
-            {/* 
             <div className="mb-2 flex max-md:flex-col justify-between">
-                <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleSearchChange} value={searchInput} />
-            </div> */}
-
-            <div className="mb-2 flex max-md:flex-col justify-between">
-                {/* <input type="text" className="system-input" placeholder="Meklēt..." onChange={handleSearchChange} value={searchInput} /> */}
                 <input className="system-input pr-11 h-10 pl-3 py-2" placeholder="Meklēt darbinieku" onChange={handleSearchChange} value={searchInput} />
             </div>
 
             <div className="overflow-x-auto">
                 <div className="overflow-y-auto max-h-[600px] border rounded shadow-sm">
-                    <div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-                        <table class="w-full text-left table-auto min-w-max">
+                    <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+                        <table className="w-full text-left table-auto min-w-max">
                             <thead>
                                 <tr>
-                                    <th class="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
-                                        <p class="block text-sm font-normal leading-none text-slate-500">Vārds, Uzvārds</p>
+                                    <th className="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
+                                        <p className="block text-sm font-normal leading-none text-slate-500">Vārds, Uzvārds</p>
                                     </th>
-                                    <th class="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
-                                        <p class="block text-sm font-normal leading-none text-slate-500">E-pasts</p>
+                                    <th className="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
+                                        <p className="block text-sm font-normal leading-none text-slate-500">E-pasts</p>
                                     </th>
-                                    <th class="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
-                                        <p class="block text-sm font-normal leading-none text-slate-500">Loma</p>
+                                    <th className="sticky top-0 p-4 border-b border-slate-300 bg-slate-50">
+                                        <p className="block text-sm font-normal leading-none text-slate-500">Loma</p>
                                     </th>
-                                    <th class="sticky top-0 p-4 border-b border-slate-300 bg-slate-50"></th>
+                                    <th className="sticky top-0 p-4 border-b border-slate-300 bg-slate-50"></th>
                                 </tr>
                             </thead>
                             <tbody>

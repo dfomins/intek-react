@@ -4,13 +4,12 @@ import { format } from "date-fns";
 import { lv } from "date-fns/locale";
 
 // Service
-import { userService } from "../../services/userService";
 import { employeeReportService } from "../../services/report/employee.service";
 
 function EmployeeReport() {
-    const [user, setUser] = useState([]);
-    const [selectedUserId, setSelectedUserId] = useState(null);
-    const [report, setReport] = useState([]);
+    const [userReport, setUserReport] = useState({
+        work_records: [],
+    });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -27,29 +26,10 @@ function EmployeeReport() {
     });
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await userService.getMe();
-                setUser(response.data);
-            } catch (err) {
-                setError(err.response?.data?.message || "Failed to fetch user");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchUser();
-    }, []);
-
-    useEffect(() => {
         const fetchReport = async () => {
             try {
                 const response = await employeeReportService.getReport(formattedDates.startDate, formattedDates.endDate);
-                const report = response.data.map((reportRecord) => ({
-                    ...reportRecord,
-                }));
-
-                setReport(report);
+                setUserReport(response.data);
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch report");
             } finally {
@@ -62,7 +42,7 @@ function EmployeeReport() {
 
     const formattedRange = `${format(formattedDates.startDate, "dd/MM/yyyy", { locale: lv })} - ${format(formattedDates.endDate, "dd/MM/yyyy", { locale: lv })}`;
 
-    const totalHours = report.reduce((sum, record) => {
+    const totalHours = userReport.work_records.reduce((sum, record) => {
         const hours = Number(record.hours);
         return sum + (isNaN(hours) ? 0 : hours);
     }, 0);
@@ -133,8 +113,8 @@ function EmployeeReport() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200">
-                                        {report.length > 0 ? (
-                                            report.map((reportRecord) => {
+                                        {userReport.work_records.length > 0 ? (
+                                            userReport.work_records.map((reportRecord) => {
                                                 const reportRecordDate = new Date(reportRecord.date);
 
                                                 return (
@@ -158,22 +138,20 @@ function EmployeeReport() {
                     </div>
                 </div>
             </div>
-            {user && (
-                <div>
-                    <table className="w-full">
-                        <tbody>
-                            <tr key={user.id} className="h-[40px] bg-white border-t-2">
-                                <td className="py-[12px] px-[15px] text-left font-semibold">
-                                    {formattedRange}
-                                    <br />
-                                    Darbinieks: {user.name} {user.surname}
-                                </td>
-                                <td className="py-[12px] px-[15px] text-right font-semibold">Stundas kopā: {totalHours}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            )}
+            <div>
+                <table className="w-full">
+                    <tbody>
+                        <tr key={userReport.id} className="h-[40px] bg-white border-t-2">
+                            <td className="py-[12px] px-[15px] text-left font-semibold">
+                                {formattedRange}
+                                <br />
+                                Darbinieks: {userReport.name} {userReport.surname}
+                            </td>
+                            <td className="py-[12px] px-[15px] text-right font-semibold">Stundas kopā: {totalHours}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
