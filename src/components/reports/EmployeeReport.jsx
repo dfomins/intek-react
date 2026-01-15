@@ -4,12 +4,11 @@ import { format } from "date-fns";
 import { lv } from "date-fns/locale";
 
 // Service
-import { userService } from "../services/userService";
+import { userService } from "../../services/userService";
+import { employeeReportService } from "../../services/report/employee.service";
 
-function Report() {
-    // const user = authService.getCurrentUser();
-    const reportService = useReportService();
-    const [users, setUsers] = useState([]);
+function EmployeeReport() {
+    const [user, setUser] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState(null);
     const [report, setReport] = useState([]);
     const [error, setError] = useState("");
@@ -28,33 +27,28 @@ function Report() {
     });
 
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchUser = async () => {
             try {
-                const response = await userService.getUsers();
-                setUsers(response.data);
+                const response = await userService.getMe();
+                setUser(response.data);
             } catch (err) {
-                setError(err.response?.data?.message || "Failed to fetch users");
+                setError(err.response?.data?.message || "Failed to fetch user");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchUsers();
+        fetchUser();
     }, []);
-
-    useEffect(() => {
-        if (users.length > 0 && selectedUserId === null) {
-            setSelectedUserId(users[0].id);
-        }
-    }, [users, selectedUserId]);
 
     useEffect(() => {
         const fetchReport = async () => {
             try {
-                const response = await reportService.getReport(selectedUserId, formattedDates.startDate, formattedDates.endDate);
+                const response = await employeeReportService.getReport(formattedDates.startDate, formattedDates.endDate);
                 const report = response.data.map((reportRecord) => ({
                     ...reportRecord,
                 }));
+
                 setReport(report);
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch report");
@@ -63,12 +57,11 @@ function Report() {
             }
         };
 
-        if (selectedUserId) fetchReport();
-    }, [selectedUserId, formattedDates]);
+        fetchReport();
+    }, [formattedDates]);
 
     const formattedRange = `${format(formattedDates.startDate, "dd/MM/yyyy", { locale: lv })} - ${format(formattedDates.endDate, "dd/MM/yyyy", { locale: lv })}`;
 
-    const selectedUser = users.find((u) => u.id === selectedUserId);
     const totalHours = report.reduce((sum, record) => {
         const hours = Number(record.hours);
         return sum + (isNaN(hours) ? 0 : hours);
@@ -115,19 +108,10 @@ function Report() {
                         }}
                     />
                 </div>
-                {/* {reportService.canSelectUser && ( */}
-                <select className="system-input pr-11 h-10 pl-3 py-2 cursor-pointer" value={selectedUserId ?? ""} onChange={(e) => setSelectedUserId(Number(e.target.value))}>
-                    {users.map((user) => (
-                        <option key={user.id} value={user.id}>
-                            {user.id + ". " + user.name + " " + user.surname}
-                        </option>
-                    ))}
-                </select>
-                {/* )} */}
 
-                <button class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                <button className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </svg>
                     Lejuplādēt atskaiti
                 </button>
@@ -174,17 +158,19 @@ function Report() {
                     </div>
                 </div>
             </div>
-            {selectedUser && (
+            {user && (
                 <div>
                     <table className="w-full">
-                        <tr key={selectedUser.id} className="h-[40px] bg-white border-t-2">
-                            <td className="py-[12px] px-[15px] text-left font-semibold">
-                                {formattedRange}
-                                <br />
-                                Darbinieks: {selectedUser.name} {selectedUser.surname}
-                            </td>
-                            <td className="py-[12px] px-[15px] text-right font-semibold">Stundas kopā: {totalHours}</td>
-                        </tr>
+                        <tbody>
+                            <tr key={user.id} className="h-[40px] bg-white border-t-2">
+                                <td className="py-[12px] px-[15px] text-left font-semibold">
+                                    {formattedRange}
+                                    <br />
+                                    Darbinieks: {user.name} {user.surname}
+                                </td>
+                                <td className="py-[12px] px-[15px] text-right font-semibold">Stundas kopā: {totalHours}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             )}
@@ -192,5 +178,4 @@ function Report() {
     );
 }
 
-export default Report;
-Report.jsx;
+export default EmployeeReport;

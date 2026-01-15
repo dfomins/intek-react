@@ -75,9 +75,9 @@ function Notes() {
         <div className="panel-width my-14">
             <h1 className="page-title">Privātās piezīmes</h1>
             <div>
-                <div className="mb-3 flex max-sm:flex-col">
-                    <input className="sm:mr-2 max-sm:mb-2 system-input" placeholder="Meklēt pēc nosaukuma" onChange={handleChange} value={searchInput} />
-                    <select className="sm:w-40 system-input" onChange={orderChange}>
+                <div className="mb-3 flex gap-3 max-sm:flex-col">
+                    <input className="system-input pr-11 h-10 pl-3 py-2" placeholder="Meklēt pēc nosaukuma" onChange={handleChange} value={searchInput} />
+                    <select className="system-input pr-11 h-10 pl-3 py-2" onChange={orderChange}>
                         <option value="desc">Jaunākās</option>
                         <option value="asc">Vecākās</option>
                     </select>

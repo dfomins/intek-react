@@ -1,11 +1,11 @@
 // class 'navbar-li' is defined in the 'index.css' file
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png";
+import logo from "../../images/logo.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Service
-import { authService } from "../services/authService";
+import { authService } from "../../services/authService";
 
 function Navbar() {
     const currentUser = authService.getCurrentUser();
@@ -42,12 +42,12 @@ function Navbar() {
                         <Link to="/pazinojumi">
                             <li className="navbar-li">Paziņojumi</li>
                         </Link>
-                        {currentUser.role == "ROLE_MANAGER" && (
-                            <Link to="/darbs">
+                        {(currentUser.role === "ROLE_MANAGER" || currentUser.role === "ROLE_FOREMAN") && (
+                            <Link to={currentUser.role === "ROLE_MANAGER" ? "/vaditajs/darbs" : "/brigadieris/darbs"}>
                                 <li className="navbar-li">Darbs</li>
                             </Link>
                         )}
-                        <Link to="atskaite">
+                        <Link to={currentUser.role === "ROLE_MANAGER" ? "/vaditajs/atskaite" : "/atskaite"}>
                             <li className="navbar-li">Atskaite</li>
                         </Link>
                         <Link to="/darba_objekti">
@@ -60,14 +60,14 @@ function Navbar() {
                 </div>
                 <h4 className="fa-solid fa-bars md:hidden cursor-pointer" onClick={changeState}></h4>
             </nav>
-            <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md z-20 bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
+            <div className={`fixed w-60 h-full top-0 md:hidden duration-300 shadow-md z-50 bg-system-green text-white ${isMenuOpen ? "right-0" : "-right-60"}`}>
                 <div className="flex justify-end">
                     <i className="fa-solid fa-xmark px-5 pt-3 text-2xl cursor-pointer" onClick={changeState} />
                 </div>
                 <div className="flex flex-col p-6">
                     <ul className="tracking-widest" onClick={changeState}>
                         <li className="mb-2 navbar-li">
-                            <Link to="/">Profils</Link>
+                            <Link to="/profils">Profils</Link>
                         </li>
                         <li className="mb-2 navbar-li">
                             <Link to="/piezimes">Piezīmes</Link>
@@ -75,12 +75,18 @@ function Navbar() {
                         <li className="mb-2 navbar-li">
                             <Link to="/pazinojumi">Paziņojumi</Link>
                         </li>
-                        <li className="mb-2 navbar-li">
-                            <Link to="/darbs">Darbs</Link>
-                        </li>
-                        <li className="mb-2 navbar-li">
-                            <Link to="/atskaite">Atskaite</Link>
-                        </li>
+                        {currentUser.role == "ROLE_MANAGER" && (
+                            <li className="mb-2 navbar-li">
+                                <Link to="/darbs">
+                                    <li className="navbar-li">Darbs</li>
+                                </Link>
+                            </li>
+                        )}
+                        <Link to={currentUser.role === "ROLE_MANAGER" ? "/vaditajs/atskaite" : "/atskaite"}>
+                            <li className="mb-2 navbar-li">
+                                <Link to="/atskaite">Atskaite</Link>
+                            </li>
+                        </Link>
                         <li className="mb-2 navbar-li">
                             <Link to="/darba_objekti">Objekti</Link>
                         </li>

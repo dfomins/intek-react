@@ -85,12 +85,18 @@ function NoteEdit() {
             <div className="px-10">
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                     <label>Nosaukums</label>
-                    <input type="text" name="title" className="system-input mb-1" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
+                    <input type="text" name="title" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
                     <p className="mb-4 text-end">
                         {titleCounter}/{maxTitleLength}
                     </p>
                     <label>Saturs</label>
-                    <textarea name="content" className="system-input min-h-[400px] mb-1 resize-none" value={formValues.content} maxLength={maxContentLength} onChange={handleChange}></textarea>
+                    <textarea
+                        name="content"
+                        className="system-input px-3 py-2 min-h-[400px] mb-1 resize-none"
+                        value={formValues.content}
+                        maxLength={maxContentLength}
+                        onChange={handleChange}
+                    ></textarea>
                     <p className="mb-4 text-end">
                         {contentCounter}/{maxContentLength}
                     </p>

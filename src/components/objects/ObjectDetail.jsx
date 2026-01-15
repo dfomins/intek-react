@@ -6,7 +6,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import toast from "react-hot-toast";
 
 // Service
-import { workObjectService } from "../../services/workObjectService";
+import { workObjectService } from "../../services/objects/service";
 
 function BuildingDetail() {
     const navigate = useNavigate();

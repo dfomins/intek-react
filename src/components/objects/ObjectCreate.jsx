@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 // Service
 import { imageService } from "../../services/imageService";
-import { workObjectService } from "../../services/workObjectService";
+import { workObjectService } from "../../services/objects/service";
 
 function ObjectCreate() {
     const navigate = useNavigate();
@@ -101,7 +101,7 @@ function ObjectCreate() {
             <div className="px-10">
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                     <label>Nosaukums</label>
-                    <input type="text" name="title" className="system-input mb-1" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
+                    <input type="text" name="title" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.title}</p>
@@ -111,7 +111,7 @@ function ObjectCreate() {
                         </p>
                     </div>
                     <label>Pilsēta</label>
-                    <input type="text" name="city" className="system-input mb-1" value={formValues.city} maxLength={maxCityLength} onChange={handleChange} />
+                    <input type="text" name="city" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.city} maxLength={maxCityLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.city}</p>
@@ -121,7 +121,7 @@ function ObjectCreate() {
                         </p>
                     </div>
                     <label>Iela</label>
-                    <input type="text" name="street" className="system-input mb-1" value={formValues.street} maxLength={maxStreetLength} onChange={handleChange} />
+                    <input type="text" name="street" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.street} maxLength={maxStreetLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.street}</p>
@@ -131,7 +131,7 @@ function ObjectCreate() {
                         </p>
                     </div>
                     <label>Mājas numurs</label>
-                    <input type="text" name="houseNumber" className="system-input mb-1" value={formValues.houseNumber} maxLength={maxHouseNumberLength} onChange={handleChange} />
+                    <input type="text" name="houseNumber" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.houseNumber} maxLength={maxHouseNumberLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.houseNumber}</p>

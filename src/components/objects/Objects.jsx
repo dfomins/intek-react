@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Service
-import { workObjectService } from "../../services/workObjectService";
+import { workObjectService } from "../../services/objects/service";
 
 function Buildings() {
     const [workObjects, setWorkObjects] = useState([]);

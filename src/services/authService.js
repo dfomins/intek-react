@@ -16,7 +16,7 @@ const getCurrentUser = () => {
     if (!token) return null;
 
     const payload = JSON.parse(atob(token.split(".")[1]));
-    return { email: payload.sub, role: payload.role };
+    return { email: payload.sub, role: payload.role, id: payload.id };
 };
 
 const logout = () => {
