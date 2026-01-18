@@ -56,8 +56,8 @@ function App() {
                         <Route path="/darba_objekti/:id" element={<BuildingDetail />} />
                         <Route path="/kontakti" element={<Contacts />} />
 
-                        {/* Employee */}
-                        <Route element={<PrivateRoute allowedRoles={(["ROLE_EMPLOYEE"], ["ROLE_FOREMAN"])} />}>
+                        {/* Employee and foreman */}
+                        <Route element={<PrivateRoute allowedRoles={["ROLE_EMPLOYEE", "ROLE_FOREMAN"]} />}>
                             <Route path="/atskaite" element={<EmployeeReport />} />
                         </Route>
 

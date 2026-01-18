@@ -86,7 +86,7 @@ function NotificationCreate() {
             <div className="px-10">
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                     <label>Nosaukums</label>
-                    <input name="title" type="text" className="system-input mb-1" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
+                    <input name="title" type="text" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.title}</p>

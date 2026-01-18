@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 
 // Service
 import { workObjectService } from "../../services/objects/service";
+import { authService } from "../../services/authService";
 
 function BuildingDetail() {
+    const currentUser = authService.getCurrentUser();
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [workObject, setWorkObject] = useState(null);
@@ -65,12 +68,14 @@ function BuildingDetail() {
                             <h2 className="break-words">{workObject.title}</h2>
                         </div>
                     </div>
-                    <div className="flex items-center">
-                        <Link className="text-2xl cursor-pointer" to={`mainit`}>
-                            <FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" />
-                        </Link>
-                        <FontAwesomeIcon icon={faTrash} className="text-2xl cursor-pointer" />
-                    </div>
+                    {currentUser.role == "ROLE_MANAGER" && (
+                        <div className="flex items-center">
+                            <Link className="text-2xl cursor-pointer" to={`mainit`}>
+                                <FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" />
+                            </Link>
+                            <FontAwesomeIcon icon={faTrash} className="text-2xl cursor-pointer" />
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="panel-width mt-5">

@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 
 // Service
 import { notificationService } from "../../services/notificationService";
+import { authService } from "../../services/authService";
 
 function NotificationDetail() {
+    const currentUser = authService.getCurrentUser();
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [notification, setNotification] = useState(null);
@@ -72,12 +75,14 @@ function NotificationDetail() {
                             {notification.createdAtDate ? <p>Izveidota: {notification.createdAtDate.toLocaleDateString()}</p> : null}
                         </div>
                     </div>
-                    <div className="flex items-center">
-                        <Link className="text-2xl cursor-pointer" to={`mainit`}>
-                            <FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" />
-                        </Link>
-                        <FontAwesomeIcon icon={faTrash} onClick={handleDelete} className="text-2xl cursor-pointer" />
-                    </div>
+                    {currentUser.role == "ROLE_MANAGER" && (
+                        <div className="flex items-center">
+                            <Link className="text-2xl cursor-pointer" to={`mainit`}>
+                                <FontAwesomeIcon icon={faPen} className="mr-3 text-2xl cursor-pointer" />
+                            </Link>
+                            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} className="text-2xl cursor-pointer" />
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="panel-width mt-3 break-words">
