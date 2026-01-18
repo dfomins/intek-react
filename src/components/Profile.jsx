@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 // Service
 import { userService } from "../services/userService";
 import { authService } from "../services/authService";
+import { workService } from "../services/work/service";
 
 let dayDefault = ["Svētdiena", "Pirmdiena", "Otrdiena", "Trešdiena", "Ceturtdiena", "Piektdiena", "Sestdiena"];
 
@@ -24,6 +25,7 @@ function CurrentDateAndDay() {
 
 function Profile() {
     const [user, setUser] = useState(null);
+    const [hoursToday, setHoursToday] = useState(null);
     const [error, setError] = useState("");
 
     const currentUser = authService.getCurrentUser();
@@ -39,6 +41,18 @@ function Profile() {
         };
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        const fetchHoursToday = async () => {
+            try {
+                const response = await workService.getHoursToday();
+                setHoursToday(response.data.hours);
+            } catch (err) {
+                setError(err.response?.data?.message || "Failed to fetch data");
+            }
+        };
+        fetchHoursToday();
+    });
 
     let userRole = "";
     if (user?.role === "MANAGER") userRole = "Vadītājs";
@@ -83,7 +97,7 @@ function Profile() {
                     <div className="flex flex-col bg-system-green rounded-md text-center">
                         <div className="py-4 bg-system-blue rounded-t-md">{CurrentDateAndDay()}</div>
                         <div className="h-48 flex items-center justify-center grow">
-                            <h3>Nostrādātās stundas: 8</h3>
+                            <h3>Nostrādātās stundas: {hoursToday ?? "-"}</h3>
                         </div>
                     </div>
                     <div className="flex flex-col bg-system-green rounded-md">
