@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 // Service
 import { userService } from "../../services/userService";
-import { workObjectService } from "../../services/objects/service";
+import { managerWorkObjectService } from "../../services/objects/manager.service";
 
 function AllUsers() {
     const [users, setUsers] = useState([]);
@@ -38,7 +38,7 @@ function AllUsers() {
     useEffect(() => {
         const fetchObjects = async () => {
             try {
-                const response = await workObjectService.getObjects();
+                const response = await managerWorkObjectService.getObjectsSimple();
                 const objects = response.data.map((object) => ({
                     ...object,
                 }));
@@ -86,7 +86,7 @@ function AllUsers() {
                 object_ids: user.objectIds || [],
             };
 
-            await workObjectService.syncUserObjects(payload);
+            await managerWorkObjectService.syncUserObjects(payload);
             toast.success("Lietotāja informācija tika veiksmīgi atjaunota!", {
                 style: {
                     minWidth: "400px",
@@ -158,7 +158,13 @@ function AllUsers() {
                                                     <div className="flex gap-3 justify-center">
                                                         {isEditing ? (
                                                             <>
-                                                                <button className="text-slate-600 hover:text-slate-800" onClick={() => saveChanges(user)}>
+                                                                <button
+                                                                    className="text-slate-600 hover:text-slate-800"
+                                                                    onClick={() => {
+                                                                        console.log("asd");
+                                                                        saveChanges(user);
+                                                                    }}
+                                                                >
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                                                         <path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6.414A2 2 0 0 0 19.414 5L17 2.586A2 2 0 0 0 15.586 2zm0 2h9.586L18 6.414V20H6zm10.238 6.793a1 1 0 1 0-1.414-1.414l-4.242 4.243l-1.415-1.415a1 1 0 0 0-1.414 1.414l2.05 2.051a1.1 1.1 0 0 0 1.556 0l4.88-4.879Z" />
                                                                     </svg>
