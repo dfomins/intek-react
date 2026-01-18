@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Service
+import { authService } from "../../services/authService";
 import { workObjectService } from "../../services/objects/service";
 
 function Buildings() {
@@ -10,6 +11,8 @@ function Buildings() {
     const [loading, setLoading] = useState(true);
 
     const [checked, setChecked] = useState(false);
+
+    const currentUser = authService.getCurrentUser();
 
     useEffect(() => {
         const fetchWorkObjects = async () => {
@@ -71,17 +74,19 @@ function Buildings() {
                 {displayedWorkObjects.map((workObject) => (
                     <Link to={`${workObject.id}`} key={workObject.id}>
                         <div className="max-md:max-w-[350px] max-md:mx-auto shadow-md">
-                            <img src={workObject.imagePath} className="h-[300px] object-cover drop-shadow-2xl" />
+                            <img src={workObject.image_path} className="h-[300px] object-cover drop-shadow-2xl" />
                             <div className="bg-system-blue p-3 text-white">{workObject.title}</div>
                         </div>
                     </Link>
                 ))}
             </div>
-            <div className="flex justify-center">
-                <Link to="/darba_objekti/jauns" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
-                    <p>Pievienot jaunu</p>
-                </Link>
-            </div>
+            {currentUser.role == "ROLE_MANAGER" && (
+                <div className="flex justify-center">
+                    <Link to="/darba_objekti/jauns" className="flex items-center h-12 px-3 system-button bg-system-blue text-white hover:bg-system-green shadow-sm">
+                        <p>Pievienot jaunu</p>
+                    </Link>
+                </div>
+            )}
         </div>
     );
 }

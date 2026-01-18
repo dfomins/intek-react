@@ -4,12 +4,12 @@ import toast from "react-hot-toast";
 
 // Service
 import { imageService } from "../../services/imageService";
-import { workObjectService } from "../../services/objects/service";
+import { managerWorkObjectService } from "../../services/objects/manager.service";
 
 function ObjectCreate() {
     const navigate = useNavigate();
 
-    const initialFormValues = { title: "", content: "", city: "", street: "", houseNumber: "" };
+    const initialFormValues = { title: "", description: "", city: "", street: "", houseNumber: "" };
     const [imageFile, setImageFile] = useState(null);
     const [formValues, setFormValues] = useState(initialFormValues);
     const [formErrors, setFormErrors] = useState({});
@@ -19,7 +19,7 @@ function ObjectCreate() {
     const [cityCounter, setCityCounter] = useState(0);
     const [streetCounter, setStreetCounter] = useState(0);
     const [houseNumberCounter, setHouseNumberCounter] = useState(0);
-    const [contentCounter, setContentCounter] = useState(0);
+    const [descriptionCounter, setDescriptionCounter] = useState(0);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,11 +29,10 @@ function ObjectCreate() {
         if (name === "city") setCityCounter(value.length);
         if (name === "street") setStreetCounter(value.length);
         if (name === "houseNumber") setHouseNumberCounter(value.length);
-        if (name === "content") setContentCounter(value.length);
+        if (name === "description") setDescriptionCounter(value.length);
     };
 
     useEffect(() => {
-        console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues);
         }
@@ -44,7 +43,7 @@ function ObjectCreate() {
         if (!values.title) errors.title = "Nosaukums ir obligāts";
         if (!values.city) errors.city = "Pilsētas nosaukums ir obligāts";
         if (!values.street) errors.street = "Jānorāda iela";
-        if (!values.content) errors.content = "Saturs nevar būt tukšs";
+        if (!values.description) errors.description = "Saturs nevar būt tukšs";
 
         return errors;
     };
@@ -68,19 +67,17 @@ function ObjectCreate() {
             imagePath = await imageService.upload(imageFile, "work-objects-image-container");
         }
 
-        console.log(imagePath);
-
         const payload = {
             title: formValues.title,
-            content: formValues.content,
+            description: formValues.description,
             city: formValues.city,
             street: formValues.street,
-            houseNumber: formValues.houseNumber,
-            imagePath: imagePath,
+            house_number: formValues.houseNumber,
+            image_path: imagePath || null,
         };
-        console.log(payload);
+
         try {
-            const response = await workObjectService.postObject(payload);
+            await managerWorkObjectService.postObject(payload);
             navigate("/darba_objekti");
             toast.success("Darba objekts veiksmīgi izveidota!");
         } catch (error) {
@@ -93,7 +90,7 @@ function ObjectCreate() {
     const maxCityLength = 50;
     const maxStreetLength = 50;
     const maxHouseNumberLength = 10;
-    const maxContentLength = 2000;
+    const maxDescriptionLength = 2000;
 
     return (
         <div className="panel-width my-14">
@@ -141,13 +138,19 @@ function ObjectCreate() {
                         </p>
                     </div>
                     <label className="pt-3">Informācija</label>
-                    <textarea name="content" value={formValues.content} maxLength={maxContentLength} onChange={handleChange} className="system-input min-h-[200px] max-h-[400px] mb-1 resize-y" />
+                    <textarea
+                        name="description"
+                        value={formValues.description}
+                        maxLength={maxDescriptionLength}
+                        onChange={handleChange}
+                        className="system-input px-3 py-2 min-h-[200px] max-h-[400px] mb-1 resize-y"
+                    />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
-                            <p className="text-red-600 text-sm">{formErrors.content}</p>
+                            <p className="text-red-600 text-sm">{formErrors.description}</p>
                         </div>
                         <p className="text-end">
-                            {contentCounter}/{maxContentLength}
+                            {descriptionCounter}/{maxDescriptionLength}
                         </p>
                     </div>
                     <label className="pt-3">Objekta bilde</label>

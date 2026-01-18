@@ -59,10 +59,8 @@ function NoteCreate() {
             content: formValues.content,
         };
 
-        console.log(payload);
-
         try {
-            const response = await noteService.postNote(payload);
+            await noteService.postNote(payload);
             navigate("/piezimes");
 
             toast.success("Piezīme veiksmīgi izveidota!");
@@ -81,7 +79,7 @@ function NoteCreate() {
             <div className="px-10">
                 <form className="flex flex-col" onSubmit={handleSubmit}>
                     <label>Nosaukums</label>
-                    <input type="text" name="title" className="system-input mb-1" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
+                    <input type="text" name="title" className="system-input pr-11 h-10 pl-3 py-2" value={formValues.title} maxLength={maxTitleLength} onChange={handleChange} />
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.title}</p>
@@ -91,7 +89,13 @@ function NoteCreate() {
                         </p>
                     </div>
                     <label>Saturs</label>
-                    <textarea name="content" className="system-input min-h-[400px] mb-1 resize-none" value={formValues.content} maxLength={maxContentLength} onChange={handleChange}></textarea>
+                    <textarea
+                        name="content"
+                        className="system-input px-3 py-2 min-h-[400px] mb-1 resize-none"
+                        value={formValues.content}
+                        maxLength={maxContentLength}
+                        onChange={handleChange}
+                    ></textarea>
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.content}</p>

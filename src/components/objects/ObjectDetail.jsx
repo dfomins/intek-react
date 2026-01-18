@@ -76,7 +76,7 @@ function BuildingDetail() {
             <div className="panel-width mt-5">
                 <div className="flex flex-col lg:flex-row">
                     <div className="flex justify-center">
-                        <img src={workObject.imagePath} className="lg:max-w-96 max-h-64" />
+                        <img src={workObject.image_path} className="lg:max-w-96 max-h-64" />
                     </div>
                     <ul className="max-lg:mt-5 lg:ms-5 text-xl">
                         <li>
@@ -86,12 +86,12 @@ function BuildingDetail() {
                             <span className="font-semibold">Iela:</span> {workObject.address.street}
                         </li>
                         <li>
-                            <span className="font-semibold">Mājas numurs:</span> {workObject.address.houseNumber}
+                            <span className="font-semibold">Mājas numurs:</span> {workObject.address.house_number}
                         </li>
                     </ul>
                 </div>
                 <h2 className="mt-3 font-semibold">Informācija:</h2>
-                <p className="break-words text-lg">{workObject.content}</p>
+                <p className="break-words text-lg">{workObject.description}</p>
             </div>
         </div>
     );
