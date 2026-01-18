@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faBan } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 // Service
@@ -105,12 +100,27 @@ function AllUsers() {
             </div>
         );
     }
+    if (error) {
+        return (
+            <div className="my-14 flex items-center justify-center max-lg:flex-col">
+                <h2 className="text-red-500 font-bold">{error}</h2>
+            </div>
+        );
+    }
 
     return (
         <div className="panel-width my-14">
             <h1 className="page-title">Visi lietotāji</h1>
             <div className="mb-2 flex max-md:flex-col justify-between">
                 <input className="system-input pr-11 h-10 pl-3 py-2" placeholder="Meklēt darbinieku" onChange={handleSearchChange} value={searchInput} />
+                <Link to="/registret">
+                    <button className="inline-flex items-center px-4 py-2 bg-green-500 hover:bg-green-600 text-gray-100 text-sm font-medium rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="white" viewBox="0 0 24 24">
+                            <path d="M10 4a4 4 0 1 0 0 8a4 4 0 0 0 0-8M4 8a6 6 0 1 1 12 0A6 6 0 0 1 4 8m15 3a1 1 0 0 1 1 1v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 1 1 0-2h1v-1a1 1 0 0 1 1-1M6.5 18C5.24 18 4 19.213 4 21a1 1 0 1 1-2 0c0-2.632 1.893-5 4.5-5h7c2.607 0 4.5 2.368 4.5 5a1 1 0 1 1-2 0c0-1.787-1.24-3-2.5-3z" />
+                        </svg>
+                        Reģistrēt jaunu
+                    </button>
+                </Link>
             </div>
 
             <div className="overflow-x-auto">

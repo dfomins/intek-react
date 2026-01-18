@@ -34,12 +34,13 @@ function Settings() {
 
     const { handleSubmit } = useForm({});
 
-    if (error)
+    if (error) {
         return (
             <div className="my-14 flex items-center justify-center max-lg:flex-col">
                 <h2 className="text-red-500 font-bold">{error}</h2>
             </div>
         );
+    }
     if (!user) {
         return (
             <div className="my-14 flex items-center justify-center max-lg:flex-col">

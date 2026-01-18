@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import AppLayout from "./components/layout/AppLayout.jsx";
 
 import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 
 import Profile from "./components/Profile.jsx";
 import Settings from "./components/Settings.jsx";
@@ -29,8 +30,6 @@ import NoMatch from "./components/nomatch/NoMatch.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import ObjectCreate from "./components/objects/ObjectCreate.jsx";
 
-import { authService } from "./services/authService.js";
-
 function App() {
     return (
         <>
@@ -42,6 +41,10 @@ function App() {
 
                 {/* Private */}
                 <Route element={<PrivateRoute />}>
+                    <Route element={<PrivateRoute allowedRoles={["ROLE_MANAGER"]} />}>
+                        <Route path="/registret" element={<Register />} />
+                    </Route>
+
                     <Route element={<AppLayout />}>
                         {/* All authenticated */}
                         <Route path="/profils" element={<Profile />} />
