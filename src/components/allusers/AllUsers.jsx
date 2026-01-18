@@ -98,11 +98,6 @@ function AllUsers() {
         }
     };
 
-    // Atcelt lietotāja informācijas izmaiņas
-    const cancelEdit = () => {
-        setEditingUserId(null);
-    };
-
     if (loading) {
         return (
             <div className="my-14 flex items-center justify-center max-lg:flex-col">

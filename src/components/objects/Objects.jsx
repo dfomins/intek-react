@@ -7,22 +7,20 @@ import { workObjectService } from "../../services/objects/service";
 
 function Buildings() {
     const [workObjects, setWorkObjects] = useState([]);
+    const [assignedWorkObjects, setAssignedWorkObjects] = useState(false);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
-
-    const [checked, setChecked] = useState(false);
 
     const currentUser = authService.getCurrentUser();
 
     useEffect(() => {
         const fetchWorkObjects = async () => {
             try {
-                const response = await workObjectService.getObjects();
+                const response = await workObjectService.getObjects(assignedWorkObjects);
                 const workObjects = response.data.map((object) => ({
                     ...object,
                 }));
                 setWorkObjects(workObjects);
-                console.log(workObjects);
             } catch (err) {
                 setError(err.response?.data?.message || "Failed to fetch work objects");
             } finally {
@@ -31,7 +29,7 @@ function Buildings() {
         };
 
         fetchWorkObjects();
-    }, []);
+    }, [assignedWorkObjects]);
 
     if (loading) {
         return (
@@ -49,36 +47,32 @@ function Buildings() {
         );
     }
 
-    const handleCheckedChange = (e) => {
-        setChecked(e.target.checked);
+    const handleAssignedChange = (e) => {
+        setAssignedWorkObjects(e.target.checked);
     };
-
-    // Atlasa objektus, kuri tiek piesaistīti lietotājam
-    const getFilteredBuildings = () => {
-        return buildings.filter((building) => user.buildings.includes(building.id));
-    };
-
-    // Ja tiek atzīmēts checkbox, tad tiek parādīti filtrēti objekti, citādi - visi objekti
-    const displayedWorkObjects = checked ? getFilteredWorkObjects() : workObjects;
 
     return (
         <div className="panel-width my-14">
             <h1 className="page-title">Darba objekti</h1>
             <div className="mb-2">
                 <label className="cursor-pointer">
-                    <input type="checkbox" className="mr-2" checked={checked} onChange={handleCheckedChange} />
+                    <input type="checkbox" className="mr-2" checked={assignedWorkObjects} onChange={handleAssignedChange} />
                     <span className="font-medium text-lg align-middle">Mani objekti</span>
                 </label>
             </div>
             <div className="h-[600px] grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-                {displayedWorkObjects.map((workObject) => (
-                    <Link to={`${workObject.id}`} key={workObject.id}>
-                        <div className="max-md:max-w-[350px] max-md:mx-auto shadow-md">
-                            <img src={workObject.image_path} className="h-[300px] object-cover drop-shadow-2xl" />
-                            <div className="bg-system-blue p-3 text-white">{workObject.title}</div>
-                        </div>
-                    </Link>
-                ))}
+                {workObjects.length > 0 ? (
+                    workObjects.map((workObject) => (
+                        <Link to={`${workObject.id}`} key={workObject.id}>
+                            <div className="max-md:max-w-[350px] max-md:mx-auto shadow-md">
+                                <img src={workObject.image_path} className="h-[300px] object-cover drop-shadow-2xl" alt={workObject.title} />
+                                <div className="bg-system-blue p-3 text-white">{workObject.title}</div>
+                            </div>
+                        </Link>
+                    ))
+                ) : (
+                    <h2 className="col-span-full mt-8 text-center">Objekti netika atrasti!</h2>
+                )}
             </div>
             {currentUser.role == "ROLE_MANAGER" && (
                 <div className="flex justify-center">

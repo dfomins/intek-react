@@ -1,35 +1,4 @@
-import "./Login.scss";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import bgimage from "../images/login/login_bg_3.webp";
-
-// Service
-import { authService } from "../services/authService";
-import { useState } from "react";
-
-function Login() {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
-
-        try {
-            await authService.login(email, password);
-
-            navigate("/profils");
-        } catch (err) {
-            console.error(err);
-            setError("Nepareizs e-pasts vai parole");
-        }
-    };
-
+function Register() {
     return (
         <div className="h-screen flex justify-center items-center bg-gradient-to-bl from-[#f2f2f2] to-[#52ab98]">
             <div className="inner-container">
@@ -55,4 +24,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register();
