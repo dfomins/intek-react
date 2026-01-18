@@ -96,7 +96,13 @@ function NotificationCreate() {
                         </p>
                     </div>
                     <label>Saturs</label>
-                    <textarea name="content" className="system-input min-h-[400px] mb-1 resize-none" value={formValues.content} maxLength={maxContentLength} onChange={handleChange}></textarea>
+                    <textarea
+                        name="content"
+                        className="system-input px-3 py-2 min-h-[400px] mb-1 resize-none"
+                        value={formValues.content}
+                        maxLength={maxContentLength}
+                        onChange={handleChange}
+                    ></textarea>
                     <div className="flex mb-4 items-center">
                         <div className="flex-1">
                             <p className="text-red-600 text-sm">{formErrors.content}</p>
