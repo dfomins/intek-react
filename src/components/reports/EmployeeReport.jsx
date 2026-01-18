@@ -5,6 +5,7 @@ import { lv } from "date-fns/locale";
 
 // Service
 import { employeeReportService } from "../../services/report/employee.service";
+import { exportService } from "../../services/export/service";
 
 function EmployeeReport() {
     const [userReport, setUserReport] = useState({
@@ -46,6 +47,26 @@ function EmployeeReport() {
         const hours = Number(record.hours);
         return sum + (isNaN(hours) ? 0 : hours);
     }, 0);
+
+    const handleExportExcel = async () => {
+        const payload = {
+            userId: userReport.id,
+            startDate: formattedDates.startDate,
+            endDate: formattedDates.endDate,
+        };
+
+        const res = await exportService.exportExcel(payload);
+
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const timestamp = Date.now();
+        const filename = `${userReport.name}-${userReport.surname}_${formattedDates.startDate}-${formattedDates.endDate}_${timestamp}.xlsx`;
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    };
 
     if (loading) {
         return (
@@ -89,7 +110,7 @@ function EmployeeReport() {
                     />
                 </div>
 
-                <button className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md">
+                <button className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-md" onClick={handleExportExcel}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                     </svg>
